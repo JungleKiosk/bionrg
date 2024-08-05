@@ -19,12 +19,40 @@
 <body>
     <div class="container">
         <div class="row">
-            <div class="col-12">
-                <h1 class="mt-5">Dimensionamento Impianto Biogas</h1>
-
+            <h1 class="mt-5">Dimensionamento Impianto Biogas</h1>
+            <div class="col-12 card">
+                <h1>Specifiche di progetto</h1>
+                <form action="/calculate" method="post" class="mt-4">
+                    <div class="form-group">
+                        <h1 for="capacity" class="form-label">Potenza (P)</h1>
+                        <input type="number" class="form-control" id="capacity" name="capacity" required>
+                    </div>
+                    <div class="form-group">
+                        <h1 for="livestock" class="form-label">Ore funzionamento annue (t):</h1>
+                        <input type="number" class="form-control" id="livestock" name="livestock" required>
+                    </div>
+                    <div class="form-group">
+                        <h1 for="area" class="form-label">Rendimento elettrico (n):</h1>
+                        <input type="number" class="form-control" id="area" name="area" required>
+                    </div>
+                    <div class="form-group">
+                        <h1 for="crop_type" class="form-label">Potere calorifero (H):</h1>
+                        <input type="text" class="form-control" id="crop_type" name="crop_type" required>
+                    </div>
+                    <div class="form-group">
+                        <h1 for="crop_type" class="form-label">Potere Calorifero inferiore (C_CH4)</h1>
+                        <input type="text" class="form-control" id="crop_type" name="crop_type" required>
+                    </div>
+                    <div class="form-group">
+                        <h1 for="crop_type" class="form-label">Carico Medio Giornaliero (Mcg):</h1>
+                        <input type="text" class="form-control" id="crop_type" name="crop_type" required>
+                    </div>
+                    <button type="submit" class="btn btn-primary mt-3">Calcola</button>
+                </form>
             </div>
         </div>
     </div>
+
     <!-- Bootstrap JS and dependencies -->
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
