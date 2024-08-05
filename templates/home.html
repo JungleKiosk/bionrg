@@ -22,39 +22,36 @@
             <h1 class="mt-5">Dimensionamento Impianto Biogas</h1>
             <div class="col-12 card">
                 <h1>Specifiche di progetto</h1>
-                <form action="/calculate" method="post" class="mt-4">
+                <form id="projectForm" class="mt-4">
                     <div class="form-group">
-                        <h1 for="capacity" class="form-label">Potenza (P)</h1>
-                        <input type="number" class="form-control" id="capacity" name="capacity" required>
+                        <label for="capacity" class="form-label">Potenza (P)</label>
+                        <input type="number" class="form-control" id="capacity" name="capacity" value="1000" required>
                     </div>
                     <div class="form-group">
-                        <h1 for="livestock" class="form-label">Ore funzionamento annue (t):</h1>
+                        <label for="livestock" class="form-label">Ore funzionamento annue (t):</label>
                         <input type="number" class="form-control" id="livestock" name="livestock" required>
                     </div>
                     <div class="form-group">
-                        <h1 for="area" class="form-label">Rendimento elettrico (n):</h1>
+                        <label for="area" class="form-label">Rendimento elettrico (n):</label>
                         <input type="number" class="form-control" id="area" name="area" required>
                     </div>
                     <div class="form-group">
-                        <h1 for="crop_type" class="form-label">Potere calorifero (H):</h1>
-                        <input type="text" class="form-control" id="crop_type" name="crop_type" required>
+                        <label for="crop_type" class="form-label">Potere calorifero (H):</label>
+                        <input type="number" class="form-control" id="crop_type" name="crop_type" required>
                     </div>
                     <div class="form-group">
-                        <h1 for="crop_type" class="form-label">Potere Calorifero inferiore (c_CH4)</h1>
-                        <input type="text" class="form-control" id="crop_type" name="crop_type" required>
+                        <label for="c_ch4" class="form-label">Potere Calorifero inferiore (C_CH4)</label>
+                        <input type="number" class="form-control" id="c_ch4" name="c_ch4" required>
                     </div>
                     <div class="form-group">
-                        <h1 for="crop_type" class="form-label">Carico Medio Giornaliero (Mcg):</h1>
-                        <input type="text" class="form-control" id="crop_type" name="crop_type" required>
+                        <label for="mcg" class="form-label">Carico Medio Giornaliero (Mcg):</label>
+                        <input type="number" class="form-control" id="mcg" name="mcg" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="e_el" class="form-label">Energia Elettrica Giornaliera (E_el):</label>
+                        <input type="number" class="form-control" id="e_el" name="e_el" readonly>
                     </div>
                     <button type="submit" class="btn btn-primary mt-3">Calcola</button>
-                    <p>
-                        dieta A: liquame bovino 5-15%, insilato di mais 75-90%, siero di latte 5-10%
-                        dieta B: letame bovino 5-25%, insilato di mais 55-75%, scarti di patata 10 - 35%
-                        dieta C: liquame suino 15-25%, insilato di mais 30-65%, bucce di pomodoro 10-35%
-                        dieta D: letame bovino 25-50%, 5-50%, sanse di olive 10-35%
-                        dieta E: liquame suino 10- 60%, insilato di tritticale 5-50%, scarti di frutta 10-35%
-                    </p>
                 </form>
             </div>
         </div>
@@ -65,31 +62,32 @@
             <div class="col-12">
                 <h1 class="mt-5">Selezione Dieta per Impianto Biogas</h1>
                 <div class="mt-4">
-                    <button class="btn btn-primary mt-3" onclick="selectDiet('dieta A')">
+                    <button class="btn btn-primary mt-3" onclick="selectDiet('dietaA')">
                         Dieta A: liquame bovino 5-15%, insilato di mais 75-90%, siero di latte 5-10%
                     </button>
-                    <button class="btn btn-primary mt-3" onclick="selectDiet('dieta B')">
+                    <button class="btn btn-primary mt-3" onclick="selectDiet('dietaB')">
                         Dieta B: letame bovino 5-25%, insilato di mais 55-75%, scarti di patata 10 - 35%
                     </button>
-                    <button class="btn btn-primary mt-3" onclick="selectDiet('dieta C')">
+                    <button class="btn btn-primary mt-3" onclick="selectDiet('dietaC')">
                         Dieta C: liquame suino 15-25%, insilato di mais 30-65%, bucce di pomodoro 10-35%
                     </button>
-                    <button class="btn btn-primary mt-3" onclick="selectDiet('dieta D')">
+                    <button class="btn btn-primary mt-3" onclick="selectDiet('dietaD')">
                         Dieta D: letame bovino 25-50%, insilato di mais 5-50%, sanse di olive 10-35%
                     </button>
-                    <button class="btn btn-primary mt-3" onclick="selectDiet('dieta E')">
+                    <button class="btn btn-primary mt-3" onclick="selectDiet('dietaE')">
                         Dieta E: liquame suino 10-60%, insilato di tritticale 5-50%, scarti di frutta 10-35%
                     </button>
                 </div>
             </div>
         </div>
     </div>
-    <!-- Bootstrap JS and dependencies -->
-    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 
     <script>
+        function calculateE_el() {
+            const P = 1000;  // Potenza in kW per 1 MW
+            const E_el = P * 24;  // Energia elettrica giornaliera
+            document.getElementById('e_el').value = E_el;
+        }
 
         function selectDiet(diet) {
             const diets = {
@@ -100,9 +98,18 @@
                 "dietaE": { liquame: 35, insilato: 27.5, scarti: 22.5 }
             };
             const selectedDiet = diets[diet];
-            alert(`Hai selezionato la ${diet}`);
-            // Puoi aggiungere logica qui per fare calcoli con la dieta selezionata
+            alert(`Hai selezionato ${diet}. Composizione: Liquame: ${selectedDiet.liquame}%, Insilato: ${selectedDiet.insilato}%, Scarti: ${selectedDiet.siero || selectedDiet.scarti || selectedDiet.bucce || selectedDiet.sanse}%`);
+            calculateE_el();  // Calcola E_el quando si seleziona una dieta
         }
+
+        // Calcola E_el al caricamento della pagina
+        window.onload = calculateE_el;
     </script>
+
+    <!-- Bootstrap JS and dependencies -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
 
 </html>
