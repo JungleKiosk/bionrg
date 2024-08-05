@@ -65,19 +65,19 @@
             <div class="col-12">
                 <h1 class="mt-5">Selezione Dieta per Impianto Biogas</h1>
                 <div class="mt-4">
-                    <button class="btn btn-primary mt-3" onclick="selectDiet('dietaA')">
+                    <button class="btn btn-primary mt-3" onclick="selectDiet('dieta A')">
                         Dieta A: liquame bovino 5-15%, insilato di mais 75-90%, siero di latte 5-10%
                     </button>
-                    <button class="btn btn-primary mt-3" onclick="selectDiet('dietaB')">
+                    <button class="btn btn-primary mt-3" onclick="selectDiet('dieta B')">
                         Dieta B: letame bovino 5-25%, insilato di mais 55-75%, scarti di patata 10 - 35%
                     </button>
-                    <button class="btn btn-primary mt-3" onclick="selectDiet('dietaC')">
+                    <button class="btn btn-primary mt-3" onclick="selectDiet('dieta C')">
                         Dieta C: liquame suino 15-25%, insilato di mais 30-65%, bucce di pomodoro 10-35%
                     </button>
-                    <button class="btn btn-primary mt-3" onclick="selectDiet('dietaD')">
+                    <button class="btn btn-primary mt-3" onclick="selectDiet('dieta D')">
                         Dieta D: letame bovino 25-50%, insilato di mais 5-50%, sanse di olive 10-35%
                     </button>
-                    <button class="btn btn-primary mt-3" onclick="selectDiet('dietaE')">
+                    <button class="btn btn-primary mt-3" onclick="selectDiet('dieta E')">
                         Dieta E: liquame suino 10-60%, insilato di tritticale 5-50%, scarti di frutta 10-35%
                     </button>
                 </div>
@@ -88,5 +88,21 @@
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+    <script>
+
+        function selectDiet(diet) {
+            const diets = {
+                "dietaA": { liquame: 10, insilato: 82.5, siero: 7.5 },
+                "dietaB": { letame: 15, insilato: 65, scarti: 20 },
+                "dietaC": { liquame: 20, insilato: 47.5, bucce: 17.5 },
+                "dietaD": { letame: 37.5, insilato: 27.5, sanse: 22.5 },
+                "dietaE": { liquame: 35, insilato: 27.5, scarti: 22.5 }
+            };
+            const selectedDiet = diets[diet];
+            alert(`Hai selezionato la ${diet}`);
+            // Puoi aggiungere logica qui per fare calcoli con la dieta selezionata
+        }
+    </script>
 
 </html>
