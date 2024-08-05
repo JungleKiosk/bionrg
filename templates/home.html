@@ -25,7 +25,7 @@
                 <form id="projectForm" class="mt-4">
                     <div class="form-group">
                         <label for="capacity" class="form-label">Potenza (P)</label>
-                        <input type="number" class="form-control" id="capacity" name="capacity" value="1000" required>
+                        <input type="number" class="form-control" id="capacity" name="capacity" required>
                     </div>
                     <div class="form-group">
                         <label for="livestock" class="form-label">Ore funzionamento annue (t):</label>
@@ -83,11 +83,11 @@
     </div>
 
     <script>
-        function calculateE_el() {
+/*         function calculateE_el() {
             const P = 1000;  // Potenza in kW per 1 MW
             const E_el = P * 24;  // Energia elettrica giornaliera
             document.getElementById('e_el').value = E_el;
-        }
+        } */
 
         function selectDiet(diet) {
             const diets = {
