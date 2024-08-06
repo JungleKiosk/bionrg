@@ -1,0 +1,17 @@
+{% extends "base.html" %}
+
+{% block title %}
+{{ dieta }}
+{% endblock %}
+
+{% block content %}
+<div class="container">
+    <div class="row">
+        <div class="col-12">
+            <h1 class="mt-5">{{ dieta }}</h1>
+            <p>Qui puoi inserire le informazioni relative a {{ dieta }}.</p>
+            <a href="/" class="btn btn-primary mt-3">Torna indietro</a>
+        </div>
+    </div>
+</div>
+{% endblock %}
