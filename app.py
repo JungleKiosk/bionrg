@@ -10,21 +10,83 @@ n = 0.45  # Rendimento elettrico
 t = 8040 #ore annue
 
 # Potenziale metanigeno (valori presi dai file Excel)
-pot_ch4 = {
-    'liquame_bovino': 0.25,
-    'insilato_mais': 0.35,
-    'siero_latte': 0.30
+pot_pg_animali = {
+    'liquame_bovino': 30,
+    'letame_bovino': 70,
+    'liquame_suino': 20,
+    'letame_suino': 90,
+}
+
+pot_ch4_animali = {
+    'liquame_bovino': 0.55,
+    'letame_bovino': 0.55,
+    'liquame_suino': 0.62,
+    'letame_suino': 0.62,
+}
+
+pot_pg_colture = {
+    'insilato_mais': 200,
+    'insilato_sorgo': 150,
+    'insilato_triticale': 185,
+}
+
+pot_ch4_colture = {
+    'insilato_mais': 0.53,
+    'insilato_sorgo': 0.52,
+    'insilato_triticale': 0.53,
+}
+
+pot_pg_colture = {
+    'bucce_pomodoro': 100,
+    'siero_latte': 30,
+    'scarti_frutta': 130,
+    'sansa_olive': 200,
+    'scarti_patata': 120,
+}
+
+pot_ch4_colture = {
+    'bucce_pomodoro': 55,
+    'siero_latte': 60,
+    'scarti_frutta': 55,
+    'sansa_olive': 55,
+    'scarti_patata': 57,
 }
 
 # Resa colturale (valori presi dai file Excel)
-resa_colt = {
-    'insilato_mais': 35
+resa_r_colture = {
+    'insilato_mais': 40,
+    'insilato_mais': 20,
+    'insilato_mais': 35,
+}
+
+resa_p_colture = {
+    'insilato_mais': 0.63,
+    'insilato_mais': 0.63,
+    'insilato_mais': 0.63,
 }
 
 # Produzione reflui (valori presi dai file Excel)
-prod_reflui = {
-    'liquame_bovino': 55
+prod_pm_reflui = {
+    'liquame_bovino': 21,
+    'liquame_bovino': 33,
+    'liquame_bovino': 28,
+    'liquame_bovino': 55,
 }
+
+prod_mc_reflui = {
+    'liquame_bovino': 0.48,
+    'liquame_bovino': 0.48,
+    'liquame_bovino': 0.10,
+    'liquame_bovino': 0.10,
+}
+
+prod_p_reflui = {
+    'liquame_bovino': 1.00,
+    'liquame_bovino': 0.35,
+    'liquame_bovino': 1.00,
+    'liquame_bovino': 0.35,
+}
+
 
 @app.route('/')
 def home():
