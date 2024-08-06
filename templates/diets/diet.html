@@ -7,9 +7,25 @@
 {% block content %}
 <div class="container">
     <div class="row">
-        <div class="col-12">
+        <div class="col-6">
             <h1 class="mt-5">{{ dieta }}</h1>
-            <p>Qui puoi inserire le informazioni relative a {{ dieta }}.</p>
+            <form method="post">
+                {% for ingrediente, limiti in ingredienti.items() %}
+                <div class="form-group">
+                    <label for="{{ ingrediente }}">{{ ingrediente.capitalize() }} ({{ limiti[0] }} - {{ limiti[1]
+                        }}%)</label>
+                    <input type="number" class="form-control" id="{{ ingrediente }}" name="{{ ingrediente }}"
+                        min="{{ limiti[0] }}" max="{{ limiti[1] }}" required>
+                </div>
+                {% endfor %}
+                <button type="submit" class="btn btn-primary mt-3">Calcola Dimensionamento Aziendale</button>
+            </form>
+            {% if percentuali %}
+            <h2 class="mt-5">Risultati:</h2>
+            {% for ingrediente, percentuale in percentuali.items() %}
+            <p>{{ ingrediente.capitalize() }}: {{ percentuale }}%</p>
+            {% endfor %}
+            {% endif %}
             <a href="/" class="btn btn-primary mt-3">Torna indietro</a>
         </div>
     </div>
