@@ -1,0 +1,44 @@
+{% extends "base.html" %}
+
+{% block title %}
+home
+{% endblock %}
+
+
+{% block content %}
+
+<body>
+    <div class="container">
+        <div class="row">
+            <div class="col-12">
+                <h1 class="mt-5">Selezione Dieta per Impianto Biogas</h1>
+                <div class="mt-4">
+                    <button class="btn btn-primary mt-3" onclick="window.location.href='/dietaA'">
+                        Dieta A
+                    </button>
+                    <button class="btn btn-primary mt-3" onclick="window.location.href='/dietaB'">
+                        Dieta B
+                    </button>
+                    <button class="btn btn-primary mt-3" onclick="window.location.href='/dietaC'">
+                        Dieta C
+                    </button>
+                    <button class="btn btn-primary mt-3" onclick="window.location.href='/dietaD'">
+                        Dieta D
+                    </button>
+                    <button class="btn btn-primary mt-3" onclick="window.location.href='/dietaE'">
+                        Dieta E
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Bootstrap JS and dependencies -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+
+</html>
+
+{% endblock %}
