@@ -7,24 +7,26 @@
 {% block content %}
 <div class="container">
     <div class="row">
-        <div class="col-6">
+        <div class="col-12">
             <h1 class="mt-5">{{ dieta }}</h1>
             <form method="post">
                 {% for ingrediente, limiti in ingredienti.items() %}
-                <div class="form-group">
-                    <label for="{{ ingrediente }}">{{ ingrediente.capitalize() }} ({{ limiti[0] }} - {{ limiti[1]
-                        }}%)</label>
-                    <input type="number" class="form-control" id="{{ ingrediente }}" name="{{ ingrediente }}"
-                        min="{{ limiti[0] }}" max="{{ limiti[1] }}" required>
-                </div>
+                    <div class="form-group">
+                        <label for="{{ ingrediente }}">{{ ingrediente.replace('_', ' ').capitalize() }} ({{ limiti[0] }} - {{ limiti[1] }}%)</label>
+                        <input type="number" class="form-control" id="{{ ingrediente }}" name="{{ ingrediente }}" min="{{ limiti[0] }}" max="{{ limiti[1] }}" required>
+                    </div>
                 {% endfor %}
                 <button type="submit" class="btn btn-primary mt-3">Calcola Dimensionamento Aziendale</button>
             </form>
             {% if percentuali %}
-            <h2 class="mt-5">Risultati:</h2>
-            {% for ingrediente, percentuale in percentuali.items() %}
-            <p>{{ ingrediente.capitalize() }}: {{ percentuale }}%</p>
-            {% endfor %}
+                <h2 class="mt-5">Risultati:</h2>
+                <p>Energia Elettrica Giornaliera (E_el): {{ E_el }} kWh</p>
+                <p>Metano Totale Necessario (M_CH4_tot): {{ M_CH4_tot }} Nm³</p>
+                <p>Massa di Biogas Totale (M_B_tot): {{ M_B_tot }} ton</p>
+                <p>Massa di Biogas da Insilato di Mais (M_B_IT): {{ M_B_IT }} ton</p>
+                <p>Massa di Biogas da Liquame Bovino (M_B_LS): {{ M_B_LS }} ton</p>
+                <p>Superficie Coltivata a Insilato di Mais (S_IT): {{ S_IT }} ha</p>
+                <p>Numero di Capi di Bestiame (A_capi): {{ A_capi }}</p>
             {% endif %}
             <a href="/" class="btn btn-primary mt-3">Torna indietro</a>
         </div>
