@@ -4,6 +4,8 @@
 home
 {% endblock %}
 
+{%include 'partials/navbar.html' %}
+
 {% block content %}
 <div class="container">
     <div class="row">
@@ -20,65 +22,3 @@ home
     </div>
 </div>
 {% endblock %}
-ora mi piacerebbe fare in modo che l'utente possa accedere a una delle diete a sua scelta e che possa calcolare il
-dimensionamento aziendale tramite queste formule?
-Cominciamo con la dieta A:
-dieta A: liquame bovino 5-15%, insilato di mais 75-90%, siero di latte 5-10%
-
-considerando che le specifiche di progetto siano fisse (vedi file esxcel prog caricaro), di seguito le formule per il
-calcolo del dimensionamento aziendale:
-
-L'obbiettivo finale dell'impianto è produrre un megawatt (1 MW = 1000 kW). Dalle specifiche di progetto ( commissione
-lavorativa) e dalle tabelle di dati, si passa poi a dimensionare l'azienda attraverso il numero di capi di bestiame e la
-superficie coperta a coltura dedicata a Biogas. L'equazione descrive l'energia elettrica giornaliera necessaria per
-ottenere 1MW ( 1000kW commissionati ).
-
-energia elettrica giornaliera = 𝐸_𝑒𝑙=1000×24 [𝑘𝑊×𝑜𝑟𝑒/𝑔𝑖𝑜𝑟𝑛𝑜]
-
-Successivamente, si può passare al calcolo del metano totale necessario per arrivare a produrre tale energia, attraverso
-i seguenti calcoli (vedi file prog).
-
-metano totale =𝑀_(〖𝐶𝐻〗_4,𝑡𝑜𝑡)=𝐸_𝑒𝑙/(𝐻_1×ɳ) [(𝑘𝑊ℎ/𝑔𝑖𝑜𝑟𝑛𝑜)/(𝑘𝑊ℎ/(𝑁𝑚^3 ))]
-
-Per ottenere questo quantitativo di metano si deve stimare quanto biogas totale è necessario produrre, considerando la
-ricetta per la dieta del digestore raccomandata ( scelta del gruppo A_ dieta A: liquame bovino 5-15%, insilato di mais
-75-90%, siero di latte 5-10% ) e il relativo potenziale metanigeno
-delle biomasse. Si procede come segue (vedi file excel pot_CH4)
-
-𝑀_(〖𝐶𝐻〗_4,𝑡𝑜𝑡)=𝑀_(𝐵,𝑡𝑜𝑡) (𝜑_𝐿𝑒𝑆.𝑝_(𝑔,𝐿𝑒𝑆).𝐶_(〖𝐶𝐻〗_4,𝐿𝑒𝑆)+𝜑_𝐼𝑇
-〖.𝑝_(𝑔,IT).𝐶_(〖𝐶𝐻〗_4,𝐼𝑇)+𝜑〗_𝑆𝐹.𝑝_(𝑔,𝑆𝐹).𝐶_(〖𝐶𝐻〗_4,𝑆𝐹) )
-
-𝑀_(𝐵,𝑡𝑜𝑡)=𝑀_(〖𝐶𝐻〗_4,𝑡𝑜𝑡)/((𝜑_𝐿𝑒𝑆.𝑝_(𝑔,𝐿𝑒𝑆).𝐶_(〖𝐶𝐻〗_4,𝐿𝑒𝑆)+𝜑_𝐼𝑇
-〖.𝑝_(𝑔,IT).𝐶_(〖𝐶𝐻〗_4,𝐼𝑇)+𝜑〗_𝑆𝐹.𝑝_(𝑔,𝑆𝐹).𝐶_(〖𝐶𝐻〗_4,𝑆𝐹) ) ) [((𝑁𝑚^3)/𝑔𝑖𝑜𝑟𝑛𝑜)/((𝑁𝑚^3)/𝑡_𝑡𝑎𝑙𝑞𝑢𝑎𝑙𝑒 )]
-
-La massa di biogas totale è di 64,71 tonnellate all'anno, il vincolo definito è di produrne un quantitativo compreso fra
-le 40 e le 70 tonnellate al giorno. Dunque, verificata la validità delle scelte del processo produttivo ( il valore
-ottenuto precedentemente è compreso nel valore commissionato), si procede con il calcolo della superficie coperta dalla
-coltura dedicata ( relativa al gruppo E ) e il calcolo dei capi da allevare per ottenere la quantità di letame suino
-stimata.
-
-Sapendo che la massa di biogas prodotto dall'insilato di triticale e la massa prodotta dal letame suino sono:
-
-𝑀_(𝐵,𝐼𝑇)=𝜑_𝐼𝑇×𝑀_(𝐵,𝑡𝑜𝑡)
-
-𝑀_(𝐵,𝐿𝑒𝑆)=𝜑_𝐿𝑒𝑆×𝑀_(𝐵,𝑡𝑜𝑡)
-
-[𝑡_𝑡𝑎𝑙𝑞𝑢𝑎𝑙𝑒/𝑔𝑖𝑜𝑟𝑛𝑜 ]
-
-E stimando anche che il numero di giorni all'anno in cui l'impianto funzioni siano:
-
-𝑁=𝑇/24 [(ℎ/𝑎𝑛𝑛𝑜)/(ℎ/𝑔𝑖𝑜𝑟𝑛𝑜)]
-
-𝑁=335[𝑔𝑖𝑜𝑟𝑛𝑖/𝑎𝑛𝑛𝑜]
-
-Si può ora calcolare la superficie da destinare alla coltura energetica. (vedi file resa_colt)
-
-𝑆_𝐼𝑇=(𝑀_(𝐵,𝐼𝑇)×𝑁)/𝑟
-
-𝑆_𝐼𝑇=(32,35×335)/35 [(𝑡/𝑔𝑖𝑜𝑟𝑛𝑜×𝑔𝑖𝑜𝑟𝑛𝑖/𝑎𝑛𝑛𝑜)/(𝑡/(ℎ𝑎×𝑎𝑛𝑛𝑜))]
-
-Infine, è calcolato il numero di capi necessari per ottenere la produzione di letame suino. (vedi file prod_reflui)
-
-𝐴_𝑐𝑎𝑝𝑖=(𝑀_(𝐵,𝐿𝑒𝑆)×𝑁)/(𝑝_𝑚×𝜌×𝑚_𝑐 )
-
-𝐴_𝑐𝑎𝑝𝑖=(9,71×335)/(55×0,35×0,1) [(𝑡/𝑎𝑛𝑛𝑜)/(𝑚^3/(𝑡_𝑝𝑣×𝑎𝑛𝑛𝑜)×𝑡/𝑚^3 ×𝑡_𝑝𝑣/𝑐𝑎𝑝𝑜)]
