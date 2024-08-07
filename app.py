@@ -45,11 +45,11 @@ pot_pg_scarti = {
 }
 
 pot_ch4_scarti = {
-    'bucce_pomodoro': 55,
-    'siero_latte': 60,
-    'scarti_frutta': 55,
-    'sansa_olive': 55,
-    'scarti_patata': 57,
+    'bucce_pomodoro': 0.55,
+    'siero_latte': 0.60,
+    'scarti_frutta': 0.55,
+    'sansa_olive': 0.55,
+    'scarti_patata': 0.57,
 }
 
 # Resa colturale (valori presi dai file Excel)
@@ -102,32 +102,39 @@ def dieta(dieta_name):
         'B': {'letame_bovino': (5, 25), 'insilato_mais': (55, 75), 'scarti_patata': (10, 35)},
         'C': {'liquame_suino': (15, 25), 'insilato_mais': (30, 65), 'bucce_pomodoro': (10, 35)},
         'D': {'letame_bovino': (25, 50), 'insilato_mais': (5, 50), 'sanse_olive': (10, 35)},
-        'E': {'liquame_suino': (10, 60), 'insilato_triticale': (5, 50), 'scarti_frutta': (10, 35)}
+        'E': {'letame_suino': (10, 60), 'insilato_triticale': (5, 50), 'scarti_frutta': (10, 35)}
     }
 
+    input_values = {}
     if request.method == 'POST':
         # Ottieni le percentuali degli ingredienti dal form
         ingredienti = diete[dieta_name]
         percentuali = {}
         for ingrediente in ingredienti:
-            percentuali[ingrediente] = float(request.form[ingrediente])
+            percentuali[ingrediente] = float(request.form[ingrediente])  # Prendi i valori come percentuali
+            input_values[ingrediente] = request.form[ingrediente]  # Salva il valore inserito dall'utente
 
         # Calcolo del metano totale necessario
         M_ch4_tot = E_el / (H * n)  # Quantità di metano totale necessario (Nm³)
 
         if dieta_name == 'E':
             # Calcolo del biogas totale necessario per dieta E
-            C_CH4_LS = pot_ch4_animali['liquame_suino']
+            C_CH4_LS = pot_ch4_animali['letame_suino']
             C_CH4_IT = pot_ch4_colture['insilato_triticale']
             C_CH4_SF = pot_ch4_scarti['scarti_frutta']
 
-            phi_LS = percentuali['liquame_suino'] / 100
+            Pg_LS = pot_pg_animali['letame_suino']
+            Pg_IT = pot_pg_colture['insilato_triticale']
+            Pg_SF = pot_pg_scarti['scarti_frutta']
+
+            phi_LS = percentuali['letame_suino'] / 100
             phi_IT = percentuali['insilato_triticale'] / 100
             phi_SF = percentuali['scarti_frutta'] / 100
 
-            M_B_tot = M_ch4_tot / (phi_LS * pot_pg_animali['liquame_suino'] * C_CH4_LS +
-                                   phi_IT * pot_pg_colture['insilato_triticale'] * C_CH4_IT +
-                                   phi_SF * pot_pg_scarti['scarti_frutta'] * C_CH4_SF)
+            M_B_tot_numerator = M_ch4_tot
+            M_B_tot_denominator = ((phi_LS * Pg_LS * C_CH4_LS) + (phi_IT * Pg_IT * C_CH4_IT) + (phi_SF * Pg_SF * C_CH4_SF))
+            
+            M_B_tot = M_B_tot_numerator / M_B_tot_denominator
 
             # Massa di biogas prodotto
             M_B_IT = phi_IT * M_B_tot
@@ -146,9 +153,29 @@ def dieta(dieta_name):
             m_c = 0.1  # Quantità di refluo per capo (ton/capo)
             A_capi = (M_B_LS * N) / (p_m * rho * m_c)
 
-            return render_template('diets/diet.html', dieta=f'Dieta {dieta_name}', ingredienti=ingredienti, percentuali=percentuali, E_el=E_el, M_ch4_tot=M_ch4_tot, M_B_tot=M_B_tot, M_B_IT=M_B_IT, M_B_LS=M_B_LS, S_IT=S_IT, A_capi=A_capi)
+            # Debug dei valori intermedi
+            debug_info = {
+                'phi_LS': phi_LS,
+                'phi_IT': phi_IT,
+                'phi_SF': phi_SF,
+                'Pg_LS': Pg_LS,
+                'Pg_IT': Pg_IT,
+                'Pg_SF': Pg_SF,
+                'C_CH4_LS': C_CH4_LS,
+                'C_CH4_IT': C_CH4_IT,
+                'C_CH4_SF': C_CH4_SF,
+                'M_B_tot_numerator': M_B_tot_numerator,
+                'M_B_tot_denominator': M_B_tot_denominator,
+                'M_B_tot_denominator_calculation': {
+                    'phi_LS * Pg_LS * C_CH4_LS': phi_LS * Pg_LS * C_CH4_LS,
+                    'phi_IT * Pg_IT * C_CH4_IT': phi_IT * Pg_IT * C_CH4_IT,
+                    'phi_SF * Pg_SF * C_CH4_SF': phi_SF * Pg_SF * C_CH4_SF,
+                }
+            }
 
-    return render_template('diets/diet.html', dieta=f'Dieta {dieta_name}', ingredienti=diete[dieta_name])
+            return render_template('diets/diet.html', dieta=f'Dieta {dieta_name}', ingredienti=ingredienti, percentuali=percentuali, E_el=E_el, M_ch4_tot=M_ch4_tot, M_B_tot=M_B_tot, M_B_IT=M_B_IT, M_B_LS=M_B_LS, S_IT=S_IT, A_capi=A_capi, input_values=input_values, debug_info=debug_info)
+
+    return render_template('diets/diet.html', dieta=f'Dieta {dieta_name}', ingredienti=diete[dieta_name], input_values=input_values)
 
 if __name__ == '__main__':
     app.run(debug=True)
