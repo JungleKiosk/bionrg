@@ -9,83 +9,123 @@ Home
 {% block content %}
 <div class="container">
     <div class="row mt-5">
-        <div class="col-12">
-            <h1>Benvenuto,</h1><br>
-            <h4>con questa app potrai calcolare il dimensionamento aziendale per un impianto a Biogas.</h4>
+        <div class="col-12 col-lg-8">
+            <h1>bioNRG</h1><br>
+            <h4>Calcola il dimensionamento aziendale per un impianto a Biogas.</h4>
+            <h5>Scegli la dieta per l'impianto Biogas, inserisci le quantità e avrai subito il risultato. </h5>
             <br>
-            <p>Le specifiche di progetto dell'impianto sono state fissate per garantire la produzione di 1MW (1000 kW).
-                Queso dato fondamentale servirà per l'elaborazione del dimensionamento aziendale.</p>
+            <a class="btn btn-info fw-bold" href="#read_more">Scopri di più</a>
+            <br>
         </div>
     </div>
-    <div class="row justify-content-center">
-        <h1 class="mt-5">Diete per Impianto Biogas</h1>
-        <div class="col-12">
+    <div class="row justify-content-center mb-5">
+        <h1 class="mt-5">Scegli la Dieta per il tuo Impianto Biogas</h1>
+        <div class="col-12 col-lg-4">
             <div class="card mb-3">
-                <div class="col-12">
-                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Possimus ex ducimus animi, recusandae rem
-                    atque, blanditiis illo odit distinctio ipsam sed veritatis eligendi commodi fuga odio assumenda error
-                    ratione. Et!
-                </div>
-                <div class="col-12">
-                    <div class="p-2">
-                        <a class="btn btn-primary mt-3" href="{{ url_for('dieta', dieta_name='a') }}">Dieta A</a>
-                    </div>
-                </div>
-            </div>
-            <div class="card mb-3">
-                <div class="col-12">
-                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Possimus ex ducimus animi, recusandae rem
-                    atque, blanditiis illo odit distinctio ipsam sed veritatis eligendi commodi fuga odio assumenda error
-                    ratione. Et!
-                </div>
-                <div class="col-12">
-                    <div class=" p-2">
-                        <a class="btn btn-primary mt-3" href="{{ url_for('dieta', dieta_name='b') }}">Dieta B</a>
-                    </div>
-                </div>
-            </div>
-            <div class="card mb-3">
-                <div class="col-12">
-                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Possimus ex ducimus animi, recusandae rem
-                    atque, blanditiis illo odit distinctio ipsam sed veritatis eligendi commodi fuga odio assumenda error
-                    ratione. Et!
-                </div>
-                <div class="col-12">
-                    <div class=" p-2">
-                        <a class="btn btn-primary mt-3" href="{{ url_for('dieta', dieta_name='c') }}">Dieta C</a>
-                    </div>
-                </div>
-            </div>
-            <div class="card mb-3">
-                <div class="col-12">
-                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Possimus ex ducimus animi, recusandae rem
-                    atque, blanditiis illo odit distinctio ipsam sed veritatis eligendi commodi fuga odio assumenda error
-                    ratione. Et!
-                </div>
-                <div class="col-12">
-                    <div class=" p-2">
-                        <a class="btn btn-primary mt-3" href="{{ url_for('dieta', dieta_name='d') }}">Dieta D</a>
-                    </div>
-                </div>
-            </div>
-            <div class="card mb-3">
-                <div class="col-12">
-                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Possimus ex ducimus animi, recusandae rem
-                    atque, blanditiis illo odit distinctio ipsam sed veritatis eligendi commodi fuga odio assumenda error
-                    ratione. Et!
-                </div>
-                <div class="col-12">
-                    <div class=" p-2">
-                        <a class="btn btn-primary mt-3" href="{{ url_for('dieta', dieta_name='e') }}">Dieta E</a>
-                    </div>
-                </div>
-            </div>
 
+                <h3>Dieta A</h3>
+                <ul>
+                    <h6>Composizione:</h6>
+                    <li>Lquame Bovino 5-15%</li>
+                    <li>Insilato di Mais 75-90%</li>
+                    <li>Siero di Latte 5-10%</li>
+                </ul>
+
+                <div class="p-2">
+                    <a class="btn btn-primary mt-3" href="{{ url_for('dieta', dieta_name='a') }}">Dieta A</a>
+                </div>
+
+            </div>
         </div>
+        <div class="col-12 col-lg-4">
+            <div class="card mb-3">
+
+                <h3>Dieta B</h3>
+                <ul>
+                    <h6>Composizione:</h6>
+                    <li>Lquame Bovino 5-15%</li>
+                    <li>Insilato di Mais 75-90%</li>
+                    <li>Siero di Latte 5-10%</li>
+                </ul>
+
+                <div class="p-2">
+                    <a class="btn btn-primary mt-3" href="{{ url_for('dieta', dieta_name='b') }}">Dieta A</a>
+                </div>
+
+            </div>
+        </div>
+        <div class="col-12 col-lg-4">
+            <div class="card mb-3">
+
+                <h3>Dieta C</h3>
+                <ul>
+                    <h6>Composizione:</h6>
+                    <li>Lquame Bovino 5-15%</li>
+                    <li>Insilato di Mais 75-90%</li>
+                    <li>Siero di Latte 5-10%</li>
+                </ul>
+
+
+                <div class="p-2">
+                    <a class="btn btn-primary mt-3" href="{{ url_for('dieta', dieta_name='c') }}">Dieta A</a>
+                </div>
+
+            </div>
+        </div>
+
+        <div class="col-12 col-lg-4">
+            <div class="card mb-3">
+
+                <h3>Dieta D</h3>
+                <ul>
+                    <h6>Composizione:</h6>
+                    <li>Lquame Bovino 5-15%</li>
+                    <li>Insilato di Mais 75-90%</li>
+                    <li>Siero di Latte 5-10%</li>
+                </ul>
+
+
+                <div class="p-2">
+                    <a class="btn btn-primary mt-3" href="{{ url_for('dieta', dieta_name='d') }}">Dieta A</a>
+                </div>
+
+            </div>
+        </div>
+        <div class="col-12 col-lg-4">
+            <div class="card mb-3">
+
+                <h3>Dieta E</h3>
+                <ul>
+                    <h6>Composizione:</h6>
+                    <li>Lquame Bovino 5-15%</li>
+                    <li>Insilato di Mais 75-90%</li>
+                    <li>Siero di Latte 5-10%</li>
+                </ul>
+
+                <div class="p-2">
+                    <a class="btn btn-primary mt-3" href="{{ url_for('dieta', dieta_name='e') }}">Dieta A</a>
+                </div>
+
+            </div>
+        </div>
+    </div>
+    <div style="height: 300px;">
+
+    </div>
+    <div id="read_more" class="row mt-5">
+        <h1>Specifiche di progetto</h1>
+        <div class="col-12 col-lg-12">
+            <p>Le specifiche di progetto dell'impianto sono state fissate per garantire la produzione di 1MW (1000 kW),
+                questo dato fondamentale servirà per l'elaborazione del dimensionamento aziendale. Per saperne di più
+                clicca <a href="/specifiche">qui</a></p>
+            <p>Di seguito la mappatura aggiornata al 2022 degli impianti per la produzione di Metano. Con questa mappa
+                ti sarà possibile identificare l'impianto più vicino alla tua zona per prendere spunto da latre realtà
+                aziendali gia avviate.</p>
+        </div>
+        <iframe src="https://www.google.com/maps/d/embed?mid=1l5lTTXeaORSkZiHJ5JMlRZ7_QkiQcmED&ehbc=2E312F" width="300"
+            height="400"></iframe>
     </div>
 </div>
 
 {%include 'partials/footer.html' %}
 {% endblock %}
-
-

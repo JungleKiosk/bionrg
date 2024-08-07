@@ -7,6 +7,10 @@ app = Flask(__name__)
 def home():
     return render_template('home/home.html')
 
+@app.route('/specifiche')
+def specifiche():
+    return render_template('home/spec.html')
+
 
 @app.route('/dieta/<dieta_name>', methods=['GET', 'POST'])
 def dieta(dieta_name):
