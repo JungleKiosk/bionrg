@@ -1,22 +1,81 @@
 {% extends "base.html" %}
 
 {% block title %}
-home
+Home
 {% endblock %}
 
 {%include 'partials/navbar.html' %}
 
 {% block content %}
 <div class="container">
-    <div class="row">
+    <div class="row mt-5">
         <div class="col-12">
-            <h1 class="mt-5">Selezione Dieta per Impianto Biogas</h1>
-            <div class="mt-4">
-                <a class="btn btn-primary mt-3" href="{{ url_for('dieta', dieta_name='a') }}">Dieta A</a>
-                <a class="btn btn-primary mt-3" href="{{ url_for('dieta', dieta_name='b') }}">Dieta B</a>
-                <a class="btn btn-primary mt-3" href="{{ url_for('dieta', dieta_name='c') }}">Dieta C</a>
-                <a class="btn btn-primary mt-3" href="{{ url_for('dieta', dieta_name='d') }}">Dieta D</a>
-                <a class="btn btn-primary mt-3" href="{{ url_for('dieta', dieta_name='e') }}">Dieta E</a>
+            <h1>Benvenuto,</h1><br>
+            <h4>Lorem ipsum dolor sit amet consectetur adipisicing elit. Dicta recusandae doloremque odit libero
+                similique voluptatem laudantium, voluptatum molestias. Aspernatur quidem mollitia aliquid rerum quam
+                illo iste voluptas id repudiandae deleniti.</h4>
+        </div>
+    </div>
+    <div class="row justify-content-center gap-4">
+        <h1 class="mt-5">Selezione Dieta per Impianto Biogas</h1>
+        <div class="card">
+            <div class="col-6">
+                Lorem ipsum dolor sit amet consectetur adipisicing elit. Possimus ex ducimus animi, recusandae rem
+                atque, blanditiis illo odit distinctio ipsam sed veritatis eligendi commodi fuga odio assumenda error
+                ratione. Et!
+            </div>
+            <div class="col-6">
+                <div class=" mt-4">
+                    <a class="btn btn-primary mt-3" href="{{ url_for('dieta', dieta_name='a') }}">Dieta A</a>
+                </div>
+            </div>
+        </div>
+        <div class="card">
+            <div class="col-6">
+                Lorem ipsum dolor sit amet consectetur adipisicing elit. Possimus ex ducimus animi, recusandae rem
+                atque, blanditiis illo odit distinctio ipsam sed veritatis eligendi commodi fuga odio assumenda error
+                ratione. Et!
+            </div>
+            <div class="col-6">
+                <div class=" mt-4">
+                    <a class="btn btn-primary mt-3" href="{{ url_for('dieta', dieta_name='b') }}">Dieta B</a>
+                </div>
+            </div>
+        </div>
+        <div class="card">
+            <div class="col-6">
+                Lorem ipsum dolor sit amet consectetur adipisicing elit. Possimus ex ducimus animi, recusandae rem
+                atque, blanditiis illo odit distinctio ipsam sed veritatis eligendi commodi fuga odio assumenda error
+                ratione. Et!
+            </div>
+            <div class="col-6">
+                <div class=" mt-4">
+                    <a class="btn btn-primary mt-3" href="{{ url_for('dieta', dieta_name='c') }}">Dieta C</a>
+                </div>
+            </div>
+        </div>
+        <div class="card">
+            <div class="col-6">
+                Lorem ipsum dolor sit amet consectetur adipisicing elit. Possimus ex ducimus animi, recusandae rem
+                atque, blanditiis illo odit distinctio ipsam sed veritatis eligendi commodi fuga odio assumenda error
+                ratione. Et!
+            </div>
+            <div class="col-6">
+                <div class=" mt-4">
+                    <a class="btn btn-primary mt-3" href="{{ url_for('dieta', dieta_name='d') }}">Dieta D</a>
+                </div>
+            </div>
+        </div>
+        <div class="card">
+            <div class="col-6">
+                Lorem ipsum dolor sit amet consectetur adipisicing elit. Possimus ex ducimus animi, recusandae rem
+                atque, blanditiis illo odit distinctio ipsam sed veritatis eligendi commodi fuga odio assumenda error
+                ratione. Et!
+            </div>
+            <div class="col-6">
+                <div class=" mt-4">
+                    <a class="btn btn-primary mt-3" href="{{ url_for('dieta', dieta_name='e') }}">Dieta E</a>
+                </div>
             </div>
         </div>
     </div>

@@ -4,8 +4,6 @@
 {{ dieta }}
 {% endblock %}
 
-{%include 'partials/navbar.html' %}
-
 {% block content %}
 <div class="container">
     <div class="row">
@@ -20,34 +18,40 @@
                 {% endfor %}
                 <button type="submit" class="btn btn-primary mt-3">Calcola Dimensionamento Aziendale</button>
             </form>
-            {% if percentuali %}
-                <h2 class="mt-5">Risultati:</h2>
-                <p>Energia Elettrica Giornaliera (E_el): {{ E_el }} kWh</p>
-                <p>Metano Totale Necessario (M_ch4_tot): {{ M_ch4_tot }} Nm³</p>
-                <p>Massa di Biogas Totale (M_B_tot): {{ M_B_tot }} ton</p>
-                <p>Massa di Biogas da Insilato di Mais (M_B_IT): {{ M_B_IT }} ton</p>
-                <p>Massa di Biogas da Liquame Bovino (M_B_LS): {{ M_B_LS }} ton</p>
-                <p>Superficie Coltivata a Insilato di Mais (S_IT): {{ S_IT }} ha</p>
-                <p>Numero di Capi di Bestiame (A_capi): {{ A_capi }}</p>
-                <h3 class="mt-5">Debug Info:</h3>
-                <p>phi_LS: {{ debug_info.phi_LS }}</p>
-                <p>phi_IT: {{ debug_info.phi_IT }}</p>
-                <p>phi_SF: {{ debug_info.phi_SF }}</p>
-                <p>Pg_LS: {{ debug_info.Pg_LS }}</p>
-                <p>Pg_IT: {{ debug_info.Pg_IT }}</p>
-                <p>Pg_SF: {{ debug_info.Pg_SF }}</p>
-                <p>C_CH4_LS: {{ debug_info.C_CH4_LS }}</p>
-                <p>C_CH4_IT: {{ debug_info.C_CH4_IT }}</p>
-                <p>C_CH4_SF: {{ debug_info.C_CH4_SF }}</p>
-                <p>M_B_tot_numerator: {{ debug_info.M_B_tot_numerator }}</p>
-                <p>M_B_tot_denominator: {{ debug_info.M_B_tot_denominator }}</p>
-                <p>Denominatore Calcolo Dettagliato:</p>
-                <ul>
-                    <li>phi_LS * Pg_LS * C_CH4_LS: {{ debug_info.M_B_tot_denominator_calculation['phi_LS * Pg_LS * C_CH4_LS'] }}</li>
-                    <li>phi_IT * Pg_IT * C_CH4_IT: {{ debug_info.M_B_tot_denominator_calculation['phi_IT * Pg_IT * C_CH4_IT'] }}</li>
-                    <li>phi_SF * Pg_SF * C_CH4_SF: {{ debug_info.M_B_tot_denominator_calculation['phi_SF * Pg_SF * C_CH4_SF'] }}</li>
-                </ul>
-            {% endif %}
+        </div>
+        {% if percentuali %}
+        <div class="col-6">
+            <h2 class="mt-5">Risultati:</h2>
+            <p>Energia Elettrica Giornaliera (E_el): {{ E_el }} kWh</p>
+            <p>Metano Totale Necessario (M_ch4_tot): {{ M_ch4_tot }} Nm³</p>
+            <p>Massa di Biogas Totale (M_B_tot): {{ M_B_tot }} ton</p>
+            <p>Massa di Biogas da Insilato di Mais (M_B_IT): {{ M_B_IT }} ton</p>
+            <p>Massa di Biogas da Liquame Bovino (M_B_LS): {{ M_B_LS }} ton</p>
+            <p>Superficie Coltivata a Insilato di Mais (S_IT): {{ S_IT }} ha</p>
+            <p>Numero di Capi di Bestiame (A_capi): {{ A_capi }}</p>
+            <h3 class="mt-5">Debug Info:</h3>
+            <p>phi_LS: {{ debug_info.phi_LS }}</p>
+            <p>phi_IT: {{ debug_info.phi_IT }}</p>
+            <p>phi_SF: {{ debug_info.phi_SF }}</p>
+            <p>Pg_LS: {{ debug_info.Pg_LS }}</p>
+            <p>Pg_IT: {{ debug_info.Pg_IT }}</p>
+            <p>Pg_SF: {{ debug_info.Pg_SF }}</p>
+            <p>C_CH4_LS: {{ debug_info.C_CH4_LS }}</p>
+            <p>C_CH4_IT: {{ debug_info.C_CH4_IT }}</p>
+            <p>C_CH4_SF: {{ debug_info.C_CH4_SF }}</p>
+            <p>M_B_tot_numerator: {{ debug_info.M_B_tot_numerator }}</p>
+            <p>M_B_tot_denominator: {{ debug_info.M_B_tot_denominator }}</p>
+            <p>Denominatore Calcolo Dettagliato:</p>
+            <ul>
+                <li>phi_LS * Pg_LS * C_CH4_LS: {{ debug_info.M_B_tot_denominator_calculation['phi_LS * Pg_LS * C_CH4_LS'] }}</li>
+                <li>phi_IT * Pg_IT * C_CH4_IT: {{ debug_info.M_B_tot_denominator_calculation['phi_IT * Pg_IT * C_CH4_IT'] }}</li>
+                <li>phi_SF * Pg_SF * C_CH4_SF: {{ debug_info.M_B_tot_denominator_calculation['phi_SF * Pg_SF * C_CH4_SF'] }}</li>
+            </ul>
+        </div>
+        {% endif %}
+    </div>
+    <div class="row">
+        <div class="col-12">
             <a href="/" class="btn btn-primary mt-3">Torna indietro</a>
         </div>
     </div>
