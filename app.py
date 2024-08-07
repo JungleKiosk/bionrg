@@ -148,9 +148,9 @@ def dieta(dieta_name):
             S_IT = (M_B_IT * N) / resa_IT
 
             # Numero di capi necessari per la produzione di letame suino
-            p_m = prod_pm_reflui['liquame_suino']
-            rho = 0.35  # Densità (ton/m³)
-            m_c = 0.1  # Quantità di refluo per capo (ton/capo)
+            p_m = prod_pm_reflui['letame_suino']
+            rho = prod_p_reflui['letame_suino']
+            m_c = prod_mc_reflui['letame_suino']
             A_capi = (M_B_LS * N) / (p_m * rho * m_c)
 
             # Debug dei valori intermedi
