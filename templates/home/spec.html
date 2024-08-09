@@ -1,4 +1,3 @@
-
 {% extends "base.html" %}
 
 {% block title %}
@@ -8,7 +7,66 @@ Home
 {%include 'partials/navbar.html' %}
 
 {% block content %}
-<h1>Specifiche di progetto</h1>
+<div class="container">
+    <div class="row">
+        <h1>Specifiche di progetto</h1>
+
+        <div class="col-12 col-lg-8">
+            <h2 class="mt-5">Specifiche di Progetto</h2>
+            <div class="table-responsive">
+                <table class="table table-striped">
+                    <thead>
+                        <tr>
+                            <th>Parametro</th>
+                            <th>Simbolo</th>
+                            <th>Valore</th>
+                            <th>UdM</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>Potenza</td>
+                            <td>P</td>
+                            <td>1000</td>
+                            <td>kW</td>
+                        </tr>
+                        <tr>
+                            <td>Ore di funzionamento annuo</td>
+                            <td>T</td>
+                            <td>8040</td>
+                            <td>ore/annue</td>
+                        </tr>
+                        <tr>
+                            <td>Rendimento elettrico</td>
+                            <td>n</td>
+                            <td>45</td>
+                            <td>%</td>
+                        </tr>
+                        <tr>
+                            <td>Potere Calorifero Inferiore CH4</td>
+                            <td>H1</td>
+                            <td>10</td>
+                            <td>kWh/Nm³</td>
+                        </tr>
+                        <tr>
+                            <td>Contenuto CH4 nel Biogas</td>
+                            <td>M_ch4_tot</td>
+                            <td><a href="#tabulati_pm">vedi tabulati</a></td>
+                            <td>% in volume</td>
+                        </tr>
+                        <tr>
+                            <td>Carico Medio Giornaliero</td>
+                            <td>M_tot</td>
+                            <td>40 ~ 70 </td>
+                            <td>ton/giorno</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+
 
 {%include 'partials/footer.html' %}
 {% endblock %}
