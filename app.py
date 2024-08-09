@@ -143,8 +143,11 @@ def dieta(dieta_name):
         # Debug dei valori intermedi
         debug_info = {
             'phi_LS': phi_LS,
+            'phi_LS_name': list(ingredienti.keys())[0],
             'phi_IT': phi_IT,
+            'phi_IT_name': list(ingredienti.keys())[1],
             'phi_SF': phi_SF,
+            'phi_SF_name': list(ingredienti.keys())[2],
             'Pg_LS': Pg_LS,
             'Pg_IT': Pg_IT,
             'Pg_SF': Pg_SF,
