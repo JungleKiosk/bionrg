@@ -7,7 +7,7 @@
 {% block content %}
 <div class="container">
     <div class="row">
-        <div class="col-6">
+        <div class="col-12 col-lg-4">
             <h1 class="mt-5">{{ dieta }}</h1>
             <form method="post">
                 {% for ingrediente, limiti in ingredienti.items() %}
@@ -22,190 +22,205 @@
                 <button type="submit" class="btn btn-primary mt-3">Calcola Dimensionamento Aziendale</button>
             </form>
         </div>
-
-        
         {% if percentuali %}
-        <div class="col-6">
+
+        <div class="col-12 col-lg-8">
             <h2 class="mt-5">Risultati:</h2>
-            <table class="table table-striped">
-                <thead>
-                    <tr>
-                        <th>Descrizione</th>
-                        <th>Parametro</th>
-                        <th>Valore</th>
-                        <th>um</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                        <td>E_el</td>
-                        <td>Energia Elettrica Giornaliera</td>
-                        <td>{{ E_el }} </td>
-                        <td>kWh</td>
-                    </tr>
-                    <tr>
-                        <td>M_ch4_tot</td>
-                        <td>Metano Totale Necessario</td>
-                        <td>{{ M_ch4_tot }}</td>
-                        <td>Nm³</td>
-                    </tr>
-                    <tr>
-                        <td>M_B_tot</td>
-                        <td>Massa di Biogas Totale</td>
-                        <td>{{ M_B_tot }}</td>
-                        <td>ton</td>
-                    </tr>
-                    <tr>
-                        <td>M_B_IT</td>
-                        <td>Massa di Biogas da Insilato di Mais</td>
-                        <td>{{ M_B_IT }}</td>
-                        <td>ton</td>
-                    </tr>
-                    <tr>
-                        <td>M_B_LS</td>
-                        <td>Massa di Biogas da Liquame Bovino</td>
-                        <td>{{ M_B_LS }}</td>
-                        <td>ton</td>
-                    </tr>
-                    <tr>
-                        <td>S_IT</td>
-                        <td>Superficie Coltivata a Insilato di Mais</td>
-                        <td>{{ S_IT }} ha</td>
-                        <td>ha</td>
-                    </tr>
-                    <tr>
-                        <td>A_capi</td>
-                        <td>Numero di Capi di Bestiame</td>
-                        <td>{{ A_capi }}</td>
-                        <td>capi</td>
-                    </tr>
-                </tbody>
-            </table>
+            <div class="table-responsive">
+                <table class="table table-striped">
+                    <thead>
+                        <tr>
+                            <th>Descrizione</th>
+                            <th>Parametro</th>
+                            <th>Valore</th>
+                            <th>um</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>E_el</td>
+                            <td>Energia Elettrica Giornaliera</td>
+                            <td>{{ E_el }}</td>
+                            <td>kWh</td>
+                        </tr>
+                        <tr>
+                            <td>M_ch4_tot</td>
+                            <td>Metano Totale Necessario</td>
+                            <td>{{ M_ch4_tot }}</td>
+                            <td>Nm³</td>
+                        </tr>
+                        <tr>
+                            <td>M_B_tot</td>
+                            <td>Massa di Biogas Totale</td>
+                            <td>{{ M_B_tot }}</td>
+                            <td>ton</td>
+                        </tr>
+                        <tr>
+                            <td>M_B_IT</td>
+                            <td>Massa di Biogas da Insilato di Mais</td>
+                            <td>{{ M_B_IT }}</td>
+                            <td>ton</td>
+                        </tr>
+                        <tr>
+                            <td>M_B_LS</td>
+                            <td>Massa di Biogas da Liquame Bovino</td>
+                            <td>{{ M_B_LS }}</td>
+                            <td>ton</td>
+                        </tr>
+                        <tr>
+                            <td>S_IT</td>
+                            <td>Superficie Coltivata a Insilato di Mais</td>
+                            <td>{{ S_IT }}</td>
+                            <td>ha</td>
+                        </tr>
+                        <tr>
+                            <td>A_capi</td>
+                            <td>Numero di Capi di Bestiame</td>
+                            <td>{{ A_capi }}</td>
+                            <td>capi</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
         </div>
         {% endif %}
+
     </div>
+
     {% if percentuali %}
     <div class="row">
-        <div class="col-6">
+        <div class="col-12">
             <h3 class="mt-5">Debug Info:</h3>
-            <table class="table table-striped">
-                <thead>
-                    <tr>
-                        <th>Parametro</th>
-                        <th>Ingrediente</th>
-                        <th>Valore</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                        <td>phi_animal</td>
-                        <td>{{ debug_info.phi_LS_name }}</td>
-                        <td>{{ debug_info.phi_LS }}</td>
-                    </tr>
-                    <tr>
-                        <td>phi_crop</td>
-                        <td>{{ debug_info.phi_IT_name }}</td>
-                        <td>{{ debug_info.phi_IT }}</td>
-                    </tr>
-                    <tr>
-                        <td>phi_waste</td>
-                        <td>{{ debug_info.phi_SF_name }}</td>
-                        <td>{{ debug_info.phi_SF }}</td>
-                    </tr>
-                    <tr>
-                        <td>Pg_LS</td>
-                        <td>{{ debug_info.phi_LS_name }}</td>
-                        <td>{{ debug_info.Pg_LS }}</td>
-                    </tr>
-                    <tr>
-                        <td>Pg_IT</td>
-                        <td>{{ debug_info.phi_IT_name }}</td>
-                        <td>{{ debug_info.Pg_IT }}</td>
-                    </tr>
-                    <tr>
-                        <td>Pg_SF</td>
-                        <td>{{ debug_info.phi_SF_name }}</td>
-                        <td>{{ debug_info.Pg_SF }}</td>
-                    </tr>
-                    <tr>
-                        <td>C_CH4_LS</td>
-                        <td>{{ debug_info.phi_LS_name }}</td>
-                        <td>{{ debug_info.C_CH4_LS }}</td>
-                    </tr>
-                    <tr>
-                        <td>C_CH4_IT</td>
-                        <td>{{ debug_info.phi_IT_name }}</td>
-                        <td>{{ debug_info.C_CH4_IT }}</td>
-                    </tr>
-                    <tr>
-                        <td>C_CH4_SF</td>
-                        <td>{{ debug_info.phi_SF_name }}</td>
-                        <td>{{ debug_info.C_CH4_SF }}</td>
-                    </tr>
-                    <tr>
-                        <td>M_B_tot_numerator</td>
-                        <td></td>
-                        <td>{{ debug_info.M_B_tot_numerator }}</td>
-                    </tr>
-                    <tr>
-                        <td>M_B_tot_denominator</td>
-                        <td></td>
-                        <td>{{ debug_info.M_B_tot_denominator }}</td>
-                    </tr>
-                </tbody>
-            </table>
-            <h3 class="mt-5">Denominatore Calcolo Dettagliato:</h3>
-            <table class="table table-striped">
-                <thead>
-                    <tr>
-                        <th>Parametro</th>
-                        <th>Valore</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                        <td>phi_LS * Pg_LS * C_CH4_LS</td>
-                        <td>{{ debug_info.M_B_tot_denominator_calculation['phi_LS * Pg_LS * C_CH4_LS'] }}</td>
-                    </tr>
-                    <tr>
-                        <td>phi_IT * Pg_IT * C_CH4_IT</td>
-                        <td>{{ debug_info.M_B_tot_denominator_calculation['phi_IT * Pg_IT * C_CH4_IT'] }}</td>
-                    </tr>
-                    <tr>
-                        <td>phi_SF * Pg_SF * C_CH4_SF</td>
-                        <td>{{ debug_info.M_B_tot_denominator_calculation['phi_SF * Pg_SF * C_CH4_SF'] }}</td>
-                    </tr>
-                </tbody>
-            </table>
+            <div class="table-responsive">
+                <table class="table table-striped">
+                    <thead>
+                        <tr>
+                            <th>Parametro</th>
+                            <th>Ingrediente</th>
+                            <th>Valore</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>phi_animal</td>
+                            <td>{{ debug_info.phi_LS_name }}</td>
+                            <td>{{ debug_info.phi_LS }}</td>
+                        </tr>
+                        <tr>
+                            <td>phi_crop</td>
+                            <td>{{ debug_info.phi_IT_name }}</td>
+                            <td>{{ debug_info.phi_IT }}</td>
+                        </tr>
+                        <tr>
+                            <td>phi_waste</td>
+                            <td>{{ debug_info.phi_SF_name }}</td>
+                            <td>{{ debug_info.phi_SF }}</td>
+                        </tr>
+                        <tr>
+                            <td>Pg_LS</td>
+                            <td>{{ debug_info.phi_LS_name }}</td>
+                            <td>{{ debug_info.Pg_LS }}</td>
+                        </tr>
+                        <tr>
+                            <td>Pg_IT</td>
+                            <td>{{ debug_info.phi_IT_name }}</td>
+                            <td>{{ debug_info.Pg_IT }}</td>
+                        </tr>
+                        <tr>
+                            <td>Pg_SF</td>
+                            <td>{{ debug_info.phi_SF_name }}</td>
+                            <td>{{ debug_info.Pg_SF }}</td>
+                        </tr>
+                        <tr>
+                            <td>C_CH4_LS</td>
+                            <td>{{ debug_info.phi_LS_name }}</td>
+                            <td>{{ debug_info.C_CH4_LS }}</td>
+                        </tr>
+                        <tr>
+                            <td>C_CH4_IT</td>
+                            <td>{{ debug_info.phi_IT_name }}</td>
+                            <td>{{ debug_info.C_CH4_IT }}</td>
+                        </tr>
+                        <tr>
+                            <td>C_CH4_SF</td>
+                            <td>{{ debug_info.phi_SF_name }}</td>
+                            <td>{{ debug_info.C_CH4_SF }}</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
         </div>
-        <div class="col-6">
+    </div>
+
+    <div class="row">
+        <div class="col-12">
+            <h3 class="mt-5">Denominatore Calcolo Dettagliato:</h3>
+            <div class="table-responsive">
+                <table class="table table-striped">
+                    <thead>
+                        <tr>
+                            <th>Parametro</th>
+                            <th>Valore</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>M_B_tot_numerator</td>
+                            <td>{{ debug_info.M_B_tot_numerator }}</td>
+                        </tr>
+                        <tr>
+                            <td>M_B_tot_denominator</td>
+                            <td>{{ debug_info.M_B_tot_denominator }}</td>
+                        </tr>
+                        <tr>
+                            <td>phi_LS * Pg_LS * C_CH4_LS</td>
+                            <td>{{ debug_info.M_B_tot_denominator_calculation['phi_LS * Pg_LS * C_CH4_LS'] }}</td>
+                        </tr>
+                        <tr>
+                            <td>phi_IT * Pg_IT * C_CH4_IT</td>
+                            <td>{{ debug_info.M_B_tot_denominator_calculation['phi_IT * Pg_IT * C_CH4_IT'] }}</td>
+                        </tr>
+                        <tr>
+                            <td>phi_SF * Pg_SF * C_CH4_SF</td>
+                            <td>{{ debug_info.M_B_tot_denominator_calculation['phi_SF * Pg_SF * C_CH4_SF'] }}</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-12">
             <h3 class="mt-5">Parametri della Dieta:</h3>
-            <table class="table table-striped">
-                <thead>
-                    <tr>
-                        <th>Parametro</th>
-                        <th>Valore</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                        <td>Resa IT</td>
-                        <td>{{ debug_info.resa_IT }} ha</td>
-                    </tr>
-                    <tr>
-                        <td>Produzione di reflui p_m</td>
-                        <td>{{ debug_info.p_m }} ton</td>
-                    </tr>
-                    <tr>
-                        <td>Densità rho</td>
-                        <td>{{ debug_info.rho }} ton/m³</td>
-                    </tr>
-                    <tr>
-                        <td>Quantità di refluo per capo m_c</td>
-                        <td>{{ debug_info.m_c }} ton/capo</td>
-                    </tr>
-                </tbody>
-            </table>
+            <div class="table-responsive">
+                <table class="table table-striped">
+                    <thead>
+                        <tr>
+                            <th>Parametro</th>
+                            <th>Valore</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>Resa IT</td>
+                            <td>{{ debug_info.resa_IT }} ha</td>
+                        </tr>
+                        <tr>
+                            <td>Produzione di reflui p_m</td>
+                            <td>{{ debug_info.p_m }} ton</td>
+                        </tr>
+                        <tr>
+                            <td>Densità rho</td>
+                            <td>{{ debug_info.rho }} ton/m³</td>
+                        </tr>
+                        <tr>
+                            <td>Quantità di refluo per capo m_c</td>
+                            <td>{{ debug_info.m_c }} ton/capo</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
         </div>
     </div>
     {% endif %}
