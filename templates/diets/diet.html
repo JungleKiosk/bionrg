@@ -134,19 +134,27 @@
                         <td></td>
                         <td>{{ debug_info.M_B_tot_denominator }}</td>
                     </tr>
+                </tbody>
+            </table>
+            <h3 class="mt-5">Denominatore Calcolo Dettagliato:</h3>
+            <table class="table table-striped">
+                <thead>
                     <tr>
-                        <td colspan="3">Denominatore Calcolo Dettagliato:</td>
+                        <th>Parametro</th>
+                        <th>Valore</th>
                     </tr>
+                </thead>
+                <tbody>
                     <tr>
                         <td>phi_LS * Pg_LS * C_CH4_LS</td>
                         <td>{{ debug_info.M_B_tot_denominator_calculation['phi_LS * Pg_LS * C_CH4_LS'] }}</td>
                     </tr>
                     <tr>
-                        <td>phi_IT * Pg_IT * C_CH4_IT</td>              
+                        <td>phi_IT * Pg_IT * C_CH4_IT</td>
                         <td>{{ debug_info.M_B_tot_denominator_calculation['phi_IT * Pg_IT * C_CH4_IT'] }}</td>
                     </tr>
                     <tr>
-                        <td>phi_SF * Pg_SF * C_CH4_SF</td>                  
+                        <td>phi_SF * Pg_SF * C_CH4_SF</td>
                         <td>{{ debug_info.M_B_tot_denominator_calculation['phi_SF * Pg_SF * C_CH4_SF'] }}</td>
                     </tr>
                 </tbody>

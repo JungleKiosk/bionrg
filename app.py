@@ -139,6 +139,15 @@ def dieta(dieta_name):
         m_c = diet_params['m_c']
         A_capi = (M_B_LS * N) / (p_m * rho * m_c)
 
+        def round_values(data, decimals=2):
+            if isinstance(data, dict):
+                return {k: round_values(v, decimals) for k, v in data.items()}
+            elif isinstance(data, (list, tuple)):
+                return type(data)(round_values(x, decimals) for x in data)
+            elif isinstance(data, (int, float)):
+                return round(data, decimals)
+            else:
+                return data
 
         # Debug dei valori intermedi
         debug_info = {
@@ -166,6 +175,9 @@ def dieta(dieta_name):
             'rho': rho,
             'm_c': m_c,
         }
+
+        debug_info = round_values(debug_info)
+
 
         return render_template('diets/diet.html', dieta=f'Dieta {dieta_name}', ingredienti=ingredienti, percentuali=percentuali, E_el=param.E_el, M_ch4_tot=M_ch4_tot, M_B_tot=M_B_tot, M_B_IT=M_B_IT, M_B_LS=M_B_LS, S_IT=S_IT, A_capi=A_capi, input_values=input_values, debug_info=debug_info)
 
