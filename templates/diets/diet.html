@@ -3,7 +3,7 @@
 {% block title %}
 {{ dieta }}
 {% endblock %}
-{%include 'partials/navbar.html' %}
+{% include 'partials/navbar.html' %}
 {% block content %}
 <div class="container">
     <div class="row">
@@ -47,15 +47,13 @@
                 <li>phi_IT * Pg_IT * C_CH4_IT: {{ debug_info.M_B_tot_denominator_calculation['phi_IT * Pg_IT * C_CH4_IT'] }}</li>
                 <li>phi_SF * Pg_SF * C_CH4_SF: {{ debug_info.M_B_tot_denominator_calculation['phi_SF * Pg_SF * C_CH4_SF'] }}</li>
             </ul>
+            <h3 class="mt-5">Parametri della Dieta:</h3>
+            <p>Resa IT: {{ debug_info.resa_IT }} ha</p>
+            <p>Produzione di reflui p_m: {{ debug_info.p_m }} ton</p>
+            <p>Densità rho: {{ debug_info.rho }} ton/m³</p>
+            <p>Quantità di refluo per capo m_c: {{ debug_info.m_c }} ton/capo</p>
         </div>
         {% endif %}
     </div>
-    <div class="row">
-        <div class="col-12">
-            
-        </div>
-    </div>
 </div>
-{%include 'partials/footer.html' %}
 {% endblock %}
-

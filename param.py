@@ -10,7 +10,7 @@ pot_pg_animali = {
     'liquame_bovino': 30,#A-1
     'letame_bovino': 70,#B,D-1
     'liquame_suino': 20,#C-1
-    'letame_suino': 90,#E
+    'letame_suino': 90,#E-1
 }
 
 pot_ch4_animali = {
@@ -66,7 +66,7 @@ prod_pm_reflui = {
     'liquame_bovino': 21,
     'letame_bovino': 33,
     'liquame_suino': 28,
-    'letame_suino': 55,
+    'letame_suino': 55,#E
 }
 
 prod_mc_reflui = {
@@ -82,3 +82,32 @@ prod_p_reflui = {
     'liquame_suino': 1.00,
     'letame_suino': 0.35,
 }
+
+def get_diet_params(dieta_name):
+    params = {}
+    if dieta_name == 'A':
+        params['resa_IT'] = resa_r_colture['insilato_mais']
+        params['p_m'] = prod_pm_reflui['liquame_bovino']
+        params['rho'] = prod_p_reflui['liquame_bovino']
+        params['m_c'] = prod_mc_reflui['liquame_bovino']
+    elif dieta_name == 'B':
+        params['resa_IT'] = resa_r_colture['insilato_mais']
+        params['p_m'] = prod_pm_reflui['letame_bovino']
+        params['rho'] = prod_p_reflui['letame_bovino']
+        params['m_c'] = prod_mc_reflui['letame_bovino']
+    elif dieta_name == 'C':
+        params['resa_IT'] = resa_r_colture['insilato_mais']
+        params['p_m'] = prod_pm_reflui['liquame_suino']
+        params['rho'] = prod_p_reflui['liquame_suino']
+        params['m_c'] = prod_mc_reflui['liquame_suino']
+    elif dieta_name == 'D':
+        params['resa_IT'] = resa_r_colture['insilato_sorgo']
+        params['p_m'] = prod_pm_reflui['letame_bovino']
+        params['rho'] = prod_p_reflui['letame_bovino']
+        params['m_c'] = prod_mc_reflui['letame_bovino']
+    elif dieta_name == 'E':
+        params['resa_IT'] = resa_r_colture['insilato_triticale']
+        params['p_m'] = prod_pm_reflui['letame_suino']
+        params['rho'] = prod_p_reflui['letame_suino']
+        params['m_c'] = prod_mc_reflui['letame_suino']
+    return params

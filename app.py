@@ -126,15 +126,19 @@ def dieta(dieta_name):
         # Numero di giorni all'anno in cui l'impianto funziona
         N = param.t / 24  # giorni/anno
 
+        # Ottieni i parametri specifici della dieta dal file param.py
+        diet_params = param.get_diet_params(dieta_name)
+
         # Superficie da destinare alla coltura energetica
-        resa_IT = param.resa_r_colture['insilato_triticale']
+        resa_IT = diet_params['resa_IT']
         S_IT = (M_B_IT * N) / resa_IT
 
         # Numero di capi necessari per la produzione di letame suino
-        p_m = param.prod_pm_reflui['liquame_suino']
-        rho = param.prod_p_reflui['liquame_suino']
-        m_c = param.prod_mc_reflui['liquame_suino']
+        p_m = diet_params['p_m']
+        rho = diet_params['rho']
+        m_c = diet_params['m_c']
         A_capi = (M_B_LS * N) / (p_m * rho * m_c)
+
 
         # Debug dei valori intermedi
         debug_info = {
@@ -153,7 +157,11 @@ def dieta(dieta_name):
                 'phi_LS * Pg_LS * C_CH4_LS': phi_LS * Pg_LS * C_CH4_LS,
                 'phi_IT * Pg_IT * C_CH4_IT': phi_IT * Pg_IT * C_CH4_IT,
                 'phi_SF * Pg_SF * C_CH4_SF': phi_SF * Pg_SF * C_CH4_SF,
-            }
+            },
+            'resa_IT': resa_IT,
+            'p_m': p_m,
+            'rho': rho,
+            'm_c': m_c,
         }
 
         return render_template('diets/diet.html', dieta=f'Dieta {dieta_name}', ingredienti=ingredienti, percentuali=percentuali, E_el=param.E_el, M_ch4_tot=M_ch4_tot, M_B_tot=M_B_tot, M_B_IT=M_B_IT, M_B_LS=M_B_LS, S_IT=S_IT, A_capi=A_capi, input_values=input_values, debug_info=debug_info)
