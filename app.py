@@ -35,7 +35,7 @@ def dieta(dieta_name):
             input_values[ingrediente] = request.form[ingrediente]  # Salva il valore inserito dall'utente
 
         # Calcolo del metano totale necessario
-        M_ch4_tot = param.E_el / (param.H * param.n)  # Quantità di metano totale necessario (Nm³)
+        M_ch4_tot = param.E_el / (param.H1 * param.n)  # Quantità di metano totale necessario (Nm³)
         M_ch4_tot = round(M_ch4_tot, 2)
 
         # Calcolo del biogas totale necessario per tutte le diete

@@ -2,7 +2,7 @@
 P = 1000  # Potenza in kW per 1 MW
 t = 8040  # ore annue
 n = 0.45  # Rendimento elettrico
-H = 10  # Potere calorifero (kWh/Nm³)
+H1 = 10  # Potere calorifero (kWh/Nm³)
 E_el = P * 24  # Energia elettrica giornaliera in kWh
 
 # Potenziale metanigeno (valori presi dai file Excel)
