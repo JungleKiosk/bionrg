@@ -36,6 +36,7 @@ def dieta(dieta_name):
 
         # Calcolo del metano totale necessario
         M_ch4_tot = param.E_el / (param.H * param.n)  # Quantità di metano totale necessario (Nm³)
+        M_ch4_tot = round(M_ch4_tot, 2)
 
         # Calcolo del biogas totale necessario per tutte le diete
         #----------------------
@@ -118,11 +119,14 @@ def dieta(dieta_name):
         M_B_tot_numerator = M_ch4_tot
         M_B_tot_denominator = (phi_LS * Pg_LS * C_CH4_LS) + (phi_IT * Pg_IT * C_CH4_IT) + (phi_SF * Pg_SF * C_CH4_SF)
         M_B_tot = M_B_tot_numerator / M_B_tot_denominator
+        M_B_tot = M_B_tot = round(M_B_tot, 2)
 
         # Massa di biogas prodotto
         M_B_IT = phi_IT * M_B_tot
-        M_B_LS = phi_LS * M_B_tot
+        M_B_IT = round(M_B_IT, 2)
 
+        M_B_LS = phi_LS * M_B_tot
+        M_B_LS = round(M_B_LS, 2)
         # Numero di giorni all'anno in cui l'impianto funziona
         N = param.t / 24  # giorni/anno
 
@@ -132,12 +136,15 @@ def dieta(dieta_name):
         # Superficie da destinare alla coltura energetica
         resa_IT = diet_params['resa_IT']
         S_IT = (M_B_IT * N) / resa_IT
+        S_IT = round(S_IT, 2)
 
         # Numero di capi necessari per la produzione di letame suino
         p_m = diet_params['p_m']
         rho = diet_params['rho']
         m_c = diet_params['m_c']
         A_capi = (M_B_LS * N) / (p_m * rho * m_c)
+        A_capi = round(A_capi, 2)
+
 
         def round_values(data, decimals=2):
             if isinstance(data, dict):
@@ -177,6 +184,7 @@ def dieta(dieta_name):
         }
 
         debug_info = round_values(debug_info)
+
 
 
         return render_template('diets/diet.html', dieta=f'Dieta {dieta_name}', ingredienti=ingredienti, percentuali=percentuali, E_el=param.E_el, M_ch4_tot=M_ch4_tot, M_B_tot=M_B_tot, M_B_IT=M_B_IT, M_B_LS=M_B_LS, S_IT=S_IT, A_capi=A_capi, input_values=input_values, debug_info=debug_info)

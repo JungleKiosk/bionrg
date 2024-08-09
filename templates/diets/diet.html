@@ -22,6 +22,8 @@
                 <button type="submit" class="btn btn-primary mt-3">Calcola Dimensionamento Aziendale</button>
             </form>
         </div>
+
+        
         {% if percentuali %}
         <div class="col-6">
             <h2 class="mt-5">Risultati:</h2>
@@ -29,37 +31,53 @@
                 <thead>
                     <tr>
                         <th>Descrizione</th>
+                        <th>Parametro</th>
                         <th>Valore</th>
+                        <th>um</th>
                     </tr>
                 </thead>
                 <tbody>
                     <tr>
-                        <td>Energia Elettrica Giornaliera (E_el)</td>
-                        <td>{{ E_el }} kWh</td>
+                        <td>E_el</td>
+                        <td>Energia Elettrica Giornaliera</td>
+                        <td>{{ E_el }} </td>
+                        <td>kWh</td>
                     </tr>
                     <tr>
-                        <td>Metano Totale Necessario (M_ch4_tot)</td>
-                        <td>{{ M_ch4_tot }} Nm³</td>
+                        <td>M_ch4_tot</td>
+                        <td>Metano Totale Necessario</td>
+                        <td>{{ M_ch4_tot }}</td>
+                        <td>Nm³</td>
                     </tr>
                     <tr>
-                        <td>Massa di Biogas Totale (M_B_tot)</td>
-                        <td>{{ M_B_tot }} ton</td>
+                        <td>M_B_tot</td>
+                        <td>Massa di Biogas Totale</td>
+                        <td>{{ M_B_tot }}</td>
+                        <td>ton</td>
                     </tr>
                     <tr>
-                        <td>Massa di Biogas da Insilato di Mais (M_B_IT)</td>
-                        <td>{{ M_B_IT }} ton</td>
+                        <td>M_B_IT</td>
+                        <td>Massa di Biogas da Insilato di Mais</td>
+                        <td>{{ M_B_IT }}</td>
+                        <td>ton</td>
                     </tr>
                     <tr>
-                        <td>Massa di Biogas da Liquame Bovino (M_B_LS)</td>
-                        <td>{{ M_B_LS }} ton</td>
+                        <td>M_B_LS</td>
+                        <td>Massa di Biogas da Liquame Bovino</td>
+                        <td>{{ M_B_LS }}</td>
+                        <td>ton</td>
                     </tr>
                     <tr>
-                        <td>Superficie Coltivata a Insilato di Mais (S_IT)</td>
+                        <td>S_IT</td>
+                        <td>Superficie Coltivata a Insilato di Mais</td>
                         <td>{{ S_IT }} ha</td>
+                        <td>ha</td>
                     </tr>
                     <tr>
-                        <td>Numero di Capi di Bestiame (A_capi)</td>
+                        <td>A_capi</td>
+                        <td>Numero di Capi di Bestiame</td>
                         <td>{{ A_capi }}</td>
+                        <td>capi</td>
                     </tr>
                 </tbody>
             </table>
