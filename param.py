@@ -7,45 +7,45 @@ E_el = P * 24  # Energia elettrica giornaliera in kWh
 
 # Potenziale metanigeno (valori presi dai file Excel)
 pot_pg_animali = {
-    'liquame_bovino': 30,
-    'letame_bovino': 70,
-    'liquame_suino': 20,
-    'letame_suino': 90,
+    'liquame_bovino': 30,#A-1
+    'letame_bovino': 70,#B,D-1
+    'liquame_suino': 20,#C-1
+    'letame_suino': 90,#E
 }
 
 pot_ch4_animali = {
-    'liquame_bovino': 0.55,
-    'letame_bovino': 0.55,
-    'liquame_suino': 0.62,
-    'letame_suino': 0.62,
+    'liquame_bovino': 0.55,#A-1
+    'letame_bovino': 0.55,#B,D-1
+    'liquame_suino': 0.62,#C-1
+    'letame_suino': 0.62,#E-1
 }
 
 pot_pg_colture = {
-    'insilato_mais': 200,
-    'insilato_sorgo': 150,
-    'insilato_triticale': 185,
+    'insilato_mais': 200,#A,B,C-1
+    'insilato_sorgo': 150,#D-1
+    'insilato_triticale': 185,#185
 }
 
 pot_ch4_colture = {
-    'insilato_mais': 0.53,
-    'insilato_sorgo': 0.52,
-    'insilato_triticale': 0.53,
+    'insilato_mais': 0.53,#A,B,C-1
+    'insilato_sorgo': 0.52,#D-1
+    'insilato_triticale': 0.53,#E-1
 }
 
 pot_pg_scarti = {
-    'bucce_pomodoro': 100,
-    'siero_latte': 30,
-    'scarti_frutta': 130,
-    'sansa_olive': 200,
-    'scarti_patata': 120,
+    'bucce_pomodoro': 100,#C-1
+    'siero_latte': 30,#A-1
+    'scarti_frutta': 130,#E-1
+    'sansa_olive': 200,#D-1
+    'scarti_patata': 120,#B-1
 }
 
 pot_ch4_scarti = {
-    'bucce_pomodoro': 0.55,
-    'siero_latte': 0.60,
-    'scarti_frutta': 0.55,
-    'sansa_olive': 0.55,
-    'scarti_patata': 0.57,
+    'bucce_pomodoro': 0.55,#C-1
+    'siero_latte': 0.60,#A-1
+    'scarti_frutta': 0.55,#E-1
+    'sansa_olive': 0.55,#D-1
+    'scarti_patata': 0.57,#B-1
 }
 
 # Resa colturale (valori presi dai file Excel)

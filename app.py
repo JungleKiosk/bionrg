@@ -21,8 +21,8 @@ def dieta(dieta_name):
         'A': {'liquame_bovino': (5, 15), 'insilato_mais': (75, 90), 'siero_latte': (5, 10)},
         'B': {'letame_bovino': (5, 25), 'insilato_mais': (55, 75), 'scarti_patata': (10, 35)},
         'C': {'liquame_suino': (15, 25), 'insilato_mais': (30, 65), 'bucce_pomodoro': (10, 35)},
-        'D': {'letame_bovino': (25, 50), 'insilato_mais': (5, 50), 'sanse_olive': (10, 35)},
-        'E': {'liquame_suino': (10, 60), 'insilato_triticale': (5, 50), 'scarti_frutta': (10, 35)}
+        'D': {'letame_bovino': (25, 50), 'insilato_sorgo': (5, 50), 'sansa_olive': (10, 35)},
+        'E': {'letame_suino': (15, 60), 'insilato_triticale': (5, 50), 'scarti_frutta': (10, 35)}
     }
 
     input_values = {}
@@ -38,6 +38,8 @@ def dieta(dieta_name):
         M_ch4_tot = param.E_el / (param.H * param.n)  # Quantità di metano totale necessario (Nm³)
 
         # Calcolo del biogas totale necessario per tutte le diete
+        #----------------------
+        #DIET A
         if dieta_name == 'A':
             C_CH4_LS = param.pot_ch4_animali['liquame_bovino']
             C_CH4_IT = param.pot_ch4_colture['insilato_mais']
@@ -50,7 +52,9 @@ def dieta(dieta_name):
             phi_LS = percentuali['liquame_bovino'] / 100
             phi_IT = percentuali['insilato_mais'] / 100
             phi_SF = percentuali['siero_latte'] / 100
-
+            #diet A - check OK - ✅
+        #----------------------
+        #DIET B
         elif dieta_name == 'B':
             C_CH4_LS = param.pot_ch4_animali['letame_bovino']
             C_CH4_IT = param.pot_ch4_colture['insilato_mais']
@@ -63,7 +67,9 @@ def dieta(dieta_name):
             phi_LS = percentuali['letame_bovino'] / 100
             phi_IT = percentuali['insilato_mais'] / 100
             phi_SF = percentuali['scarti_patata'] / 100
-
+            #diet B - check OK - ✅
+        #----------------------
+        #DIET C
         elif dieta_name == 'C':
             C_CH4_LS = param.pot_ch4_animali['liquame_suino']
             C_CH4_IT = param.pot_ch4_colture['insilato_mais']
@@ -76,20 +82,24 @@ def dieta(dieta_name):
             phi_LS = percentuali['liquame_suino'] / 100
             phi_IT = percentuali['insilato_mais'] / 100
             phi_SF = percentuali['bucce_pomodoro'] / 100
-
+            #diet C - check OK - ✅
+        #----------------------
+        #DIET D
         elif dieta_name == 'D':
             C_CH4_LS = param.pot_ch4_animali['letame_bovino']
-            C_CH4_IT = param.pot_ch4_colture['insilato_mais']
-            C_CH4_SF = param.pot_ch4_scarti['sanse_olive']
+            C_CH4_IT = param.pot_ch4_colture['insilato_sorgo']
+            C_CH4_SF = param.pot_ch4_scarti['sansa_olive']
 
             Pg_LS = param.pot_pg_animali['letame_bovino']
-            Pg_IT = param.pot_pg_colture['insilato_mais']
-            Pg_SF = param.pot_pg_scarti['sanse_olive']
+            Pg_IT = param.pot_pg_colture['insilato_sorgo']
+            Pg_SF = param.pot_pg_scarti['sansa_olive']
 
             phi_LS = percentuali['letame_bovino'] / 100
             phi_IT = percentuali['insilato_mais'] / 100
-            phi_SF = percentuali['sanse_olive'] / 100
-
+            phi_SF = percentuali['sansa_olive'] / 100
+            #diet D - check OK - ✅
+        #----------------------
+        #DIET E
         elif dieta_name == 'E':
             C_CH4_LS = param.pot_ch4_animali['letame_suino']
             C_CH4_IT = param.pot_ch4_colture['insilato_triticale']
@@ -102,7 +112,8 @@ def dieta(dieta_name):
             phi_LS = percentuali['letame_suino'] / 100
             phi_IT = percentuali['insilato_triticale'] / 100
             phi_SF = percentuali['scarti_frutta'] / 100
-
+            #diet E - check OK - ✅
+        #----------------------
         # Calcolo della massa totale di biogas
         M_B_tot_numerator = M_ch4_tot
         M_B_tot_denominator = (phi_LS * Pg_LS * C_CH4_LS) + (phi_IT * Pg_IT * C_CH4_IT) + (phi_SF * Pg_SF * C_CH4_SF)
