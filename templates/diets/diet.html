@@ -30,8 +30,8 @@
                 <table class="table table-striped">
                     <thead>
                         <tr>
-                            <th>Descrizione</th>
                             <th>Parametro</th>
+                            <th>Descrizione</th>
                             <th>Valore</th>
                             <th>um</th>
                         </tr>
@@ -84,7 +84,6 @@
             </div>
         </div>
         {% endif %}
-
     </div>
 
     {% if percentuali %}
@@ -96,55 +95,75 @@
                     <thead>
                         <tr>
                             <th>Parametro</th>
+                            <th>Descrizione</th>
                             <th>Ingrediente</th>
                             <th>Valore</th>
+                            <th>um</th>
                         </tr>
                     </thead>
                     <tbody>
                         <tr>
                             <td>phi_animal</td>
+                            <td>Percentuale di ingrediente</td>
                             <td>{{ debug_info.phi_LS_name }}</td>
                             <td>{{ debug_info.phi_LS }}</td>
+                            <td>%</td>
                         </tr>
                         <tr>
                             <td>phi_crop</td>
+                            <td>Percentuale di ingrediente</td>
                             <td>{{ debug_info.phi_IT_name }}</td>
                             <td>{{ debug_info.phi_IT }}</td>
+                            <td>%</td>
                         </tr>
                         <tr>
                             <td>phi_waste</td>
+                            <td>Percentuale di ingrediente</td>
                             <td>{{ debug_info.phi_SF_name }}</td>
                             <td>{{ debug_info.phi_SF }}</td>
+                            <td>%</td>
                         </tr>
                         <tr>
-                            <td>Pg_LS</td>
+                            <td>Pg_animal</td>
+                            <td>Potenziale prod. Biogas</td>
                             <td>{{ debug_info.phi_LS_name }}</td>
                             <td>{{ debug_info.Pg_LS }}</td>
+                            <td>Nm³/t</td>
                         </tr>
                         <tr>
-                            <td>Pg_IT</td>
+                            <td>Pg_crop</td>
+                            <td>Potenziale prod. Biogas</td>
                             <td>{{ debug_info.phi_IT_name }}</td>
                             <td>{{ debug_info.Pg_IT }}</td>
+                            <td>Nm³/t</td>
                         </tr>
                         <tr>
-                            <td>Pg_SF</td>
+                            <td>Pg_waste</td>
+                            <td>Potenziale prod. Biogas</td>
                             <td>{{ debug_info.phi_SF_name }}</td>
                             <td>{{ debug_info.Pg_SF }}</td>
+                            <td>Nm³/t</td>
                         </tr>
                         <tr>
-                            <td>C_CH4_LS</td>
+                            <td>C_CH4_animal</td>
+                            <td>Volume CH4 nel Biogas</td>
                             <td>{{ debug_info.phi_LS_name }}</td>
                             <td>{{ debug_info.C_CH4_LS }}</td>
+                            <td>%</td>
                         </tr>
                         <tr>
-                            <td>C_CH4_IT</td>
+                            <td>C_CH4_crop</td>
+                            <td>Volume CH4 nel Biogas</td>
                             <td>{{ debug_info.phi_IT_name }}</td>
                             <td>{{ debug_info.C_CH4_IT }}</td>
+                            <td>%</td>
                         </tr>
                         <tr>
-                            <td>C_CH4_SF</td>
+                            <td>C_CH4_waste</td>
+                            <td>Volume CH4 nel Biogas</td>
                             <td>{{ debug_info.phi_SF_name }}</td>
                             <td>{{ debug_info.C_CH4_SF }}</td>
+                            <td>%</td>
                         </tr>
                     </tbody>
                 </table>
@@ -173,15 +192,15 @@
                             <td>{{ debug_info.M_B_tot_denominator }}</td>
                         </tr>
                         <tr>
-                            <td>phi_LS * Pg_LS * C_CH4_LS</td>
+                            <td>phi_animal * Pg_animal * C_CH4_animal</td>
                             <td>{{ debug_info.M_B_tot_denominator_calculation['phi_LS * Pg_LS * C_CH4_LS'] }}</td>
                         </tr>
                         <tr>
-                            <td>phi_IT * Pg_IT * C_CH4_IT</td>
+                            <td>phi_crop * Pg_crop * C_CH4_crop</td>
                             <td>{{ debug_info.M_B_tot_denominator_calculation['phi_IT * Pg_IT * C_CH4_IT'] }}</td>
                         </tr>
                         <tr>
-                            <td>phi_SF * Pg_SF * C_CH4_SF</td>
+                            <td>phi_waste * Pg_waste * C_CH4_waste</td>
                             <td>{{ debug_info.M_B_tot_denominator_calculation['phi_SF * Pg_SF * C_CH4_SF'] }}</td>
                         </tr>
                     </tbody>
@@ -198,25 +217,35 @@
                     <thead>
                         <tr>
                             <th>Parametro</th>
+                            <th>Descrizione</th>
                             <th>Valore</th>
+                            <th>um</th>
                         </tr>
                     </thead>
                     <tbody>
                         <tr>
-                            <td>Resa IT</td>
-                            <td>{{ debug_info.resa_IT }} ha</td>
+                            <td>resa_IT</td>
+                            <td>Resa Colturale</td>
+                            <td>{{ debug_info.resa_IT }}ha</td>
+                            <td>ha</td>
                         </tr>
                         <tr>
-                            <td>Produzione di reflui p_m</td>
+                            <td>p_m</td>
+                            <td>Produzione di reflui</td>
                             <td>{{ debug_info.p_m }} ton</td>
+                            <td>ton</td>
                         </tr>
                         <tr>
-                            <td>Densità rho</td>
-                            <td>{{ debug_info.rho }} ton/m³</td>
+                            <td>rho</td>
+                            <td>Densità media refluo</td>
+                            <td>{{ debug_info.rho }}</td>
+                            <td>ton/m³</td>
                         </tr>
                         <tr>
-                            <td>Quantità di refluo per capo m_c</td>
-                            <td>{{ debug_info.m_c }} ton/capo</td>
+                            <td>m_c</td>
+                            <td>Quantità di refluo per capo</td>
+                            <td>{{ debug_info.m_c }}</td>
+                            <td>ton/capo</td>
                         </tr>
                     </tbody>
                 </table>
