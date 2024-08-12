@@ -19,11 +19,10 @@
                         value="{{ input_values[ingrediente] if input_values else '' }}">
                 </div>
                 {% endfor %}
-                <button type="submit" class="btn btn-primary mt-3">Calcola Dimensionamento Aziendale</button>
+                <button type="submit" class="btn btn_st mt-3">Calcola</button>
             </form>
         </div>
         {% if percentuali %}
-
         <div class="col-12 col-lg-8">
             <h2 class="mt-5">Risultati:</h2>
             <div class="table-responsive">
@@ -33,10 +32,22 @@
                             <th>Parametro</th>
                             <th>Descrizione</th>
                             <th>Valore</th>
-                            <th>um</th>
+                            <th>UdM</th>
                         </tr>
                     </thead>
                     <tbody>
+                        <tr>
+                            <td>S_crop</td>
+                            <td>Superficie coltivata a coltura energetica</td>
+                            <td>{{ S_IT }}</td>
+                            <td>ha</td>
+                        </tr>
+                        <tr class="highlight-row">
+                            <td>A_capi</td>
+                            <td>Numero di Capi di Bestiame</td>
+                            <td>{{ A_capi }}</td>
+                            <td>capi</td>
+                        </tr>
                         <tr>
                             <td>E_el</td>
                             <td>Energia Elettrica Giornaliera</td>
@@ -57,27 +68,15 @@
                         </tr>
                         <tr>
                             <td>M_B_crop</td>
-                            <td>Massa di Biogas da Insilato di Mais</td>
+                            <td>Massa di Biogas da coltura energetica</td>
                             <td>{{ M_B_IT }}</td>
                             <td>ton</td>
                         </tr>
                         <tr>
                             <td>M_B_animal</td>
-                            <td>Massa di Biogas da Liquame Bovino</td>
+                            <td>Massa di Biogas da reflui zootecnici</td>
                             <td>{{ M_B_LS }}</td>
                             <td>ton</td>
-                        </tr>
-                        <tr>
-                            <td>S_crop</td>
-                            <td>Superficie Coltivata a Insilato di Mais</td>
-                            <td>{{ S_IT }}</td>
-                            <td>ha</td>
-                        </tr>
-                        <tr>
-                            <td>A_capi</td>
-                            <td>Numero di Capi di Bestiame</td>
-                            <td>{{ A_capi }}</td>
-                            <td>capi</td>
                         </tr>
                     </tbody>
                 </table>
@@ -94,7 +93,8 @@
             <p>
                 Si consideri che l'algoritmo è calibrato con l'obbiettivo finale di produrre un megawatt ora al giorno
                 (commissione progettuale). Dalle <a href="/specifiche">specifiche di
-                progetto</a> (commissione progettuale) e dai <a href="/specifiche">tabulati dei parametri</a> si stima il dimensionamento aziendale
+                    progetto</a> (commissione progettuale) e dai <a href="/specifiche">tabulati dei parametri</a> si
+                stima il dimensionamento aziendale
                 attraverso il
                 numero di capi di bestiame e la superficie a coltura energetica dedicata a Biogas.
             <p>
@@ -292,7 +292,8 @@
                 N = 8040/24 = 335 [giorni/anno]
                 <br>
                 <br>
-                <span class="small">Il resto dei giorni dell'anno serviranno per la manutenzione dell'impianto e bruciare i gas in eccesso </span>
+                <span class="small">Il resto dei giorni dell'anno serviranno per la manutenzione dell'impianto e
+                    bruciare i gas in eccesso </span>
             </p>
             <p>
                 Ora si passa alla stima della superficie da destinare alla coltura energetica: <br>
@@ -301,66 +302,68 @@
                 S_crop = (M_B_crop x N)/r [((tonn/giorno)x(giorni/anno))/(tonn/(ha x anno))]
                 <br><br>
                 S_crop = (<span>{{ M_B_IT }} </span>x 335)/<span>{{ debug_info.resa_IT }}</span>
-                <div>
+            <div>
                 <br>
                 <span class="small">in cui r = resa [tonn/(ha x annue)]</span>
-            </p>
-            <p>
-                Infine, si stima il numero di capi necessari per ottenere la produzione di letame suino:
-            </p>
-            <p>
-                A_capi = (M_B_animal x N)/(p_m x rho x m_c) [(tonn/anno)/((m³/(tonn_pesovivo x anno)) x (tonn/m³) x (tonn_pesovivo/capo))]
-                <br>
-                <br>
-                A_capi = (<span>{{M_B_animal}}</span> x 335)/(<span>{{ debug_info.p_m }}</span> x <span>{{ debug_info.rho }}</span> x <span>{{ debug_info.m_c }}</span>) = <span>{{A_capi}}</span>
-            </p>
-        </div>
-    </div>
-
-
-    <div class="row">
-        <div class="col-12">
-            <h3 class="mt-5">Parametri della Dieta:</h3>
-            <div class="table-responsive">
-                <table class="table table-striped">
-                    <thead>
-                        <tr>
-                            <th>Parametro</th>
-                            <th>Descrizione</th>
-                            <th>Valore</th>
-                            <th>um</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-                            <td>r</td>
-                            <td>Resa Colturale</td>
-                            <td>{{ debug_info.resa_IT }}</td>
-                            <td>ha</td>
-                        </tr>
-                        <tr>
-                            <td>p_m</td>
-                            <td>Produzione di reflui</td>
-                            <td>{{ debug_info.p_m }}</td>
-                            <td>ton</td>
-                        </tr>
-                        <tr>
-                            <td>rho</td>
-                            <td>Densità media refluo</td>
-                            <td>{{ debug_info.rho }}</td>
-                            <td>ton/m³</td>
-                        </tr>
-                        <tr>
-                            <td>m_c</td>
-                            <td>Quantità di refluo per capo</td>
-                            <td>{{ debug_info.m_c }}</td>
-                            <td>ton/capo</td>
-                        </tr>
-                    </tbody>
-                </table>
+                </br>
+                <p>
+                    Infine, si stima il numero di capi necessari per ottenere la produzione di letame suino:
+                </p>
+                <p>
+                    A_capi = (M_B_animal x N)/(p_m x rho x m_c) [(tonn/anno)/((m³/(tonn_pesovivo x anno)) x (tonn/m³) x
+                    (tonn_pesovivo/capo))]
+                    <br>
+                <p>
+                    A_capi = (<span>{{M_B_animal}}</span> x 335)/(<span>{{ debug_info.p_m }}</span> x <span>{{
+                        debug_info.rho }}</span> x <span>{{ debug_info.m_c }}</span>) = <span>{{A_capi}}</span>
+                    </br>
             </div>
+            </p>
+
+
+            <div class="row">
+                <div class="col-12">
+                    <h3 class="mt-5">Parametri della Dieta:</h3>
+                    <div class="table-responsive">
+                        <table class="table table-striped">
+                            <thead>
+                                <tr>
+                                    <th>Parametro</th>
+                                    <th>Descrizione</th>
+                                    <th>Valore</th>
+                                    <th>um</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>r</td>
+                                    <td>Resa Colturale</td>
+                                    <td>{{ debug_info.resa_IT }}</td>
+                                    <td>ha</td>
+                                </tr>
+                                <tr>
+                                    <td>p_m</td>
+                                    <td>Produzione di reflui</td>
+                                    <td>{{ debug_info.p_m }}</td>
+                                    <td>ton</td>
+                                </tr>
+                                <tr>
+                                    <td>rho</td>
+                                    <td>Densità media refluo</td>
+                                    <td>{{ debug_info.rho }}</td>
+                                    <td>ton/m³</td>
+                                </tr>
+                                <tr>
+                                    <td>m_c</td>
+                                    <td>Quantità di refluo per capo</td>
+                                    <td>{{ debug_info.m_c }}</td>
+                                    <td>ton/capo</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+            {% endif %}
         </div>
-    </div>
-    {% endif %}
-</div>
-{% endblock %}
+        {% endblock %}
