@@ -1,50 +1,25 @@
+<footer style="height: 600px;" id="footer" class="p-5 bg-dark">
+  <div class="row justify-content-center mt-5">
 
-
-<footer id="footer" class="p-5 bg-dark">
-    <div class="row justify-content-center mt-5">
-
-        <div class="col-sm-4 col-md-3 text-center">
-            <h3 class="">Follow me</h3>
-            <a target="_blank" href="https://github.com/JungleKiosk"><img class="icon_social mx-2"
-                    src="../assets/img/logo/github_footer.svg" alt=""></a>
-            <a target="_blank" href="https://www.linkedin.com/in/francescominutella/"><img class="icon_social mx-2"
-                    src="../assets/img/logo/linkedin_footer.svg" alt=""></a>
-            <a target="_blank" href="https://www.youtube.com/@kioskgis"><img class="icon_social mx-2"
-                    src="../assets/img/logo/youtube_footer.svg" alt=""></a>
-        </div>
-
+    <div class="col-sm-4 col-md-3 text-center">
+      <h3 class="">Follow me</h3>
+      <a style="text-decoration: none;" target="_blank" href="https://github.com/JungleKiosk">
+        <img class="icon_social mx-2" src="{{ url_for('static', filename='img/github_footer.svg') }}" alt="GitHub">
+      </a>
+      <a style="text-decoration: none;" target="_blank" href="https://www.linkedin.com/in/francescominutella/">
+        <img class="icon_social mx-2" src="{{ url_for('static', filename='img/linkedin_footer.svg') }}" alt="LinkedIn">
+      </a>
+      <a style="text-decoration: none;" target="_blank" href="https://www.youtube.com/@kioskgis">
+        <img class="icon_social mx-2" src="{{ url_for('static', filename='img/youtube_footer.svg') }}" alt="YouTube">
+        </img>
+      </a>
     </div>
-
-    <footerid= class="row justify-content-center mt-5">
-
-
-        <footerid= class="col-12 col-lg-2 text-center">
-            <h5>Contacts</h5>
-
-            <span>+39 3311874661</span> <footerid=>
-            <span>eso.fra24@gmail.com</span>
-
-        </footerid=>
-
-    </footerid=>
-</footerid=>
-
-<style>
-    .icon_social {
-      width: 10%;
-    }
-    
-    ul li {
-      list-style: none;
-    }
-    
-    #footer{
-      height: 400px;
-    }
-    
-    @media (max-width: 786px) {
-      .icon_social {
-        width: 20%;
-      }
-    }
-</style>
+    <div class="row justify-content-center mt-5">
+      <div class="col-12 col-lg-2 text-center">
+        <h5>Contacts</h5>
+        <span>+39 3311874661</span> <br>
+        <span>eso.fra24@gmail.com</span>
+        </br>
+      </div>
+    </div>
+</footer>

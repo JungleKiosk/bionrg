@@ -38,7 +38,8 @@
                     <tbody>
                         <tr>
                             <td><span class="tr_span rounde-4"><strong>S_crop</strong></span></td>
-                            <td><span class="tr_span rounde-4"><strong>Superficie coltivata a coltura energetica</strong></span></td>
+                            <td><span class="tr_span rounde-4"><strong>Superficie coltivata a coltura
+                                        energetica</strong></span></td>
                             <td><span class="tr_span rounde-4"><strong>{{ S_IT }}</strong></span></td>
                             <td><span class="tr_span rounde-4"><strong>ha</strong></span></td>
                         </tr>
@@ -91,12 +92,14 @@
             <h1>Dimensionamento aziendale</h1>
             <h3>Processo di calcolo:</h3>
             <p>
-                L'algoritmo è calibrato su <a href="/specifiche">specifiche di progetto</a>, con obbiettivo finale di
+                L'algoritmo è calibrato su <a class="a_dark" href="/specifiche">specifiche di progetto</a>, con
+                obbiettivo finale di
                 produrre un megawatt ora al giorno
-                (commissione progettuale). Saranno quindi utilizzati i parametri riportati nei <a
+                (commissione progettuale). Saranno quindi utilizzati i parametri riportati nei <a class="a_dark"
                     href="/specifiche">tabulati</a> per la stima del
                 dimensionamento aziendale.
-                La stima del dimensionamento aziendale è espressa attraverso <strong>il numero di capi di bestiame</strong> e <strong>la superficie a
+                La stima del dimensionamento aziendale è espressa attraverso <strong>il numero di capi di
+                    bestiame</strong> e <strong>la superficie a
                     coltura energetica</strong> dedicata a Biogas.
             </p>
 
@@ -318,7 +321,7 @@
         </div>
     </div>
 
-    <div class="row">
+    <div class="row mb-5">
         <div class="col-12">
             <h3 class="mt-5">Parametri della Dieta:</h3>
             <div class="table-responsive">
@@ -362,4 +365,6 @@
         </div>
     </div>
     {% endif %}
-    {% endblock %}
+</div>
+{%include 'partials/footer.html' %}
+{% endblock %}

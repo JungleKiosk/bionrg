@@ -191,3 +191,14 @@ body.dark-mode .slider:before {
 .tr_span:hover {
     background-color: #dedede;
 }
+
+.icon_social {
+    width: 10%; /* Per testare, aumenta la dimensione */
+}
+
+
+@media (max-width: 786px) {
+    .icon_social {
+      width: 20%;
+    }
+  }

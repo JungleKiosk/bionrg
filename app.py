@@ -7,8 +7,8 @@ app = Flask(__name__)
 def home():
     return render_template('home/home.html')
 
-@app.route('/specifiche')
-def specifiche():
+@app.route('/tabulati')
+def tabulati():
     return render_template('home/spec.html')
 
 
