@@ -362,6 +362,11 @@
                     </tbody>
                 </table>
             </div>
+            {% if warning_message %}
+            <div class="alert alert-warning mt-3">
+                {{ warning_message }}
+            </div>
+            {% endif %}
         </div>
     </div>
     {% endif %}

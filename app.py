@@ -121,6 +121,11 @@ def dieta(dieta_name):
         M_B_tot = M_B_tot_numerator / M_B_tot_denominator
         M_B_tot = M_B_tot = round(M_B_tot, 2)
 
+        # Controllo se M_B_tot è fuori dal range specificato
+        warning_message = None
+        if M_B_tot < 40 or M_B_tot > 70:
+            warning_message = "Attenzione: il valore di M_B_tot è fuori dal range di progetto (40-70 tonnellate). Le specifiche di progetto non sono rispettate."
+
         # Massa di biogas prodotto
         M_B_IT = phi_IT * M_B_tot
         M_B_IT = round(M_B_IT, 2)
@@ -187,7 +192,7 @@ def dieta(dieta_name):
 
 
 
-        return render_template('diets/diet.html', dieta=f'Dieta {dieta_name}', ingredienti=ingredienti, percentuali=percentuali, E_el=param.E_el, M_ch4_tot=M_ch4_tot, M_B_tot=M_B_tot, M_B_IT=M_B_IT, M_B_LS=M_B_LS, S_IT=S_IT, A_capi=A_capi, input_values=input_values, debug_info=debug_info)
+        return render_template('diets/diet.html', dieta=f'Dieta {dieta_name}', ingredienti=ingredienti, percentuali=percentuali, E_el=param.E_el, M_ch4_tot=M_ch4_tot, M_B_tot=M_B_tot, M_B_IT=M_B_IT, M_B_LS=M_B_LS, S_IT=S_IT, A_capi=A_capi, input_values=input_values, debug_info=debug_info, warning_message=warning_message)
 
     return render_template('diets/diet.html', dieta=f'Dieta {dieta_name}', ingredienti=diete[dieta_name], input_values=input_values)
 
