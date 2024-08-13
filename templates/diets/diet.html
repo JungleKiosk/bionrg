@@ -92,11 +92,11 @@
             <h1>Dimensionamento aziendale</h1>
             <h3>Processo di calcolo:</h3>
             <p>
-                L'algoritmo è calibrato su <a class="a_dark" href="/specifiche">specifiche di progetto</a>, con
+                L'algoritmo è calibrato su <a class="a_dark" href="/tabulati">specifiche di progetto</a>, con
                 obbiettivo finale di
                 produrre un megawatt ora al giorno
                 (commissione progettuale). Saranno quindi utilizzati i parametri riportati nei <a class="a_dark"
-                    href="/specifiche">tabulati</a> per la stima del
+                    href="/tabulati">tabulati</a> per la stima del
                 dimensionamento aziendale.
                 La stima del dimensionamento aziendale è espressa attraverso <strong>il numero di capi di
                     bestiame</strong> e <strong>la superficie a
@@ -290,11 +290,30 @@
             <div class="formula-box">
                 <p>
                     <strong>N = T/24</strong> [(h/anno) / (h/giorno)] <br><br>
-                    N = 8040 / 24 = 335 [giorni/anno]<br><br>
-                    <span class="small">NOTE! Il resto dei giorni dell'anno serviranno per la manutenzione dell'impianto
-                        e
-                        bruciare i gas in eccesso.</span>
+                    N = 8040 / 24 = 335 [giorni/anno]<br>
+                <p>
                 </p>
+                <p>
+                    <strong>NOTE! Il resto dei giorni dell'anno serviranno per la manutenzione dell'impianto
+                        e bruciare i gas in eccesso.
+                    </strong>
+                </p>
+                <br>
+                <div class="row">
+                    <div class="col-12 col-lg-6">
+                        <img src="{{ url_for('static', filename='img/torcia.png') }}" alt="Example Image"
+                            class="img-fluid mb-3">
+                    </div>
+                    <div class="col-12 col-lg-6">
+                        <p>torce sono necessarie come misura di sicurezza e di tutela ambientale per bruciare
+                            eccedenze
+                            di biogas. <br> Obiettivo: massimizzare la combustione e ridurre il rilascio in atmosfera.
+                            <br>
+                            Distanza
+                            minima dal suolo: 4 m. <br> Distanza minima da aree abitate: 5 m.
+                        </p>
+                    </div>
+                </div>
             </div>
 
             <p>Ora si passa alla stima della superficie da destinare alla coltura energetica:</p>
@@ -313,63 +332,66 @@
             <div class="formula-box">
                 <p>
                     <strong>A_capi = (M_B_animal x N) / (p_m x ρ x m_c)</strong> <br>
-                    {(tonn/anno) / [(m³/(tonn_pesovivo x anno)) x (tonn/m³) x (tonn_pesovivo/capo)]}<br><br>
+                    {(tonn/anno) / [(m³/(tonn_pesovivo x anno)) x (tonn/m³) x (tonn_pesovivo/capo)]}
+                <div><br>
                     A_capi = (<span>{{ M_B_animal }}</span> x 335) / (<span>{{ debug_info.p_m }}</span> x <span>{{
                         debug_info.rho }}</span> x <span>{{ debug_info.m_c }}</span>) = <span>{{ A_capi }}</span>
-                </p>
+                    </p>
+                </div>
             </div>
-        </div>
-    </div>
+            </p>
 
-    <div class="row mb-5">
-        <div class="col-12">
-            <h3 class="mt-5">Parametri della Dieta:</h3>
-            <div class="table-responsive">
-                <table class="table table-striped">
-                    <thead>
-                        <tr>
-                            <th>Parametro</th>
-                            <th>Descrizione</th>
-                            <th>Valore</th>
-                            <th>UdM</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-                            <td>r</td>
-                            <td>Resa Colturale</td>
-                            <td>{{ debug_info.resa_IT }}</td>
-                            <td>ha</td>
-                        </tr>
-                        <tr>
-                            <td>p_m</td>
-                            <td>Produzione di reflui</td>
-                            <td>{{ debug_info.p_m }}</td>
-                            <td>ton</td>
-                        </tr>
-                        <tr>
-                            <td>rho</td>
-                            <td>Densità media refluo</td>
-                            <td>{{ debug_info.rho }}</td>
-                            <td>ton/m³</td>
-                        </tr>
-                        <tr>
-                            <td>m_c</td>
-                            <td>Quantità di refluo per capo</td>
-                            <td>{{ debug_info.m_c }}</td>
-                            <td>ton/capo</td>
-                        </tr>
-                    </tbody>
-                </table>
-            </div>
-            {% if warning_message %}
-            <div class="alert alert-warning mt-3">
-                {{ warning_message }}
+            <div class="row mb-5">
+                <div class="col-12">
+                    <h3 class="mt-5">Parametri della Dieta:</h3>
+                    <div class="table-responsive">
+                        <table class="table table-striped">
+                            <thead>
+                                <tr>
+                                    <th>Parametro</th>
+                                    <th>Descrizione</th>
+                                    <th>Valore</th>
+                                    <th>UdM</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>r</td>
+                                    <td>Resa Colturale</td>
+                                    <td>{{ debug_info.resa_IT }}</td>
+                                    <td>ha</td>
+                                </tr>
+                                <tr>
+                                    <td>p_m</td>
+                                    <td>Produzione di reflui</td>
+                                    <td>{{ debug_info.p_m }}</td>
+                                    <td>ton</td>
+                                </tr>
+                                <tr>
+                                    <td>rho</td>
+                                    <td>Densità media refluo</td>
+                                    <td>{{ debug_info.rho }}</td>
+                                    <td>ton/m³</td>
+                                </tr>
+                                <tr>
+                                    <td>m_c</td>
+                                    <td>Quantità di refluo per capo</td>
+                                    <td>{{ debug_info.m_c }}</td>
+                                    <td>ton/capo</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    {% if warning_message %}
+                    <div class="alert alert-warning mt-3">
+                        {{ warning_message }}
+                    </div>
+                    {% endif %}
+                </div>
             </div>
             {% endif %}
         </div>
     </div>
-    {% endif %}
 </div>
 {%include 'partials/footer.html' %}
 {% endblock %}

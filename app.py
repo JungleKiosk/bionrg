@@ -12,6 +12,12 @@ def tabulati():
     return render_template('home/spec.html')
 
 
+@app.route('/modal_torcia/<dieta_name>')
+def modal_torcia(dieta_name):
+    return render_template('partials/modale_torcia.html', dieta_name=dieta_name)
+
+
+
 @app.route('/dieta/<dieta_name>', methods=['GET', 'POST'])
 def dieta(dieta_name):
     dieta_name = dieta_name.upper()  # Converte il nome della dieta in maiuscolo
