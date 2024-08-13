@@ -1,16 +1,28 @@
 :root {
-    --background-light-mode: white;
+    --background-light-mode: rgb(250, 250, 250);
     --color-light-mode: black;
     --background-dark-mode: #2f2f2f;
     --color-dark-mode: white;
-    --card-background-light: #dcf2ff; /* Darker card background in light mode */
-    --card-text-light: rgb(0, 0, 0);      /* Light text color in light mode */
-    --card-background-dark: white; /* Normal card background in dark mode */
-    --card-text-dark: black;       /* Normal text color in dark mode */
+    --card-background-light: #dcf2ff;
+    /* Darker card background in light mode */
+    --card-text-light: rgb(0, 0, 0);
+    /* Light text color in light mode */
+    --card-background-dark: white;
+    /* Normal card background in dark mode */
+    --card-text-dark: black;
+    /* Normal text color in dark mode */
     --navbar-background-color: rgb(138, 200, 255);
     --slider-background: #ccc;
     --icon-background: rgb(71, 71, 71);
     --icon-background: rgb(71, 71, 71);
+    --formula-box-dark: rgba(138, 200, 255, 0.83);
+    /* Darker background for formulas in dark mode */
+    --formula-text-dark: rgb(0, 0, 0);
+    /* White text color for formulas in dark mode */
+    --formula-box-light: rgba(138, 200, 255, 0.285);
+    /* Darker background for formulas in dark mode */
+    --formula-text-light: rgb(0, 0, 85);
+    /* White text color for formulas in dark mode */
 }
 
 /* Light Mode */
@@ -33,6 +45,20 @@ body.dark-mode {
 body.dark-mode .card_st {
     background-color: var(--card-background-dark);
     color: var(--card-text-dark);
+}
+
+body.dark-mode .formula-box {
+    background-color: var(--formula-box-dark);
+    color: var(--formula-text-dark);
+}
+
+body.light-mode .formula-box {
+    background-color: var(--formula-box-light);
+    color: var(--formula-text-light);
+}
+
+body.dark-mode .a_dark {
+    color: rgb(138, 200, 255);
 }
 
 .navbar_st {
@@ -92,42 +118,76 @@ body.dark-mode .slider:before {
 }
 
 /* Change position of the icon when checked */
-.switch input:checked + .slider:before {
+.switch input:checked+.slider:before {
     transform: translateX(26px);
 }
 
 
 .navbar_st {
     background-color: var(--navbar-background-color);
-    padding: 10px 20px; /* Adds padding to the navbar for better spacing */
+    padding: 10px 20px;
+    /* Adds padding to the navbar for better spacing */
 }
 
 /* Style for the nav links */
 .nav-link {
-    font-size: 1rem; /* Adjust the font size */
-    font-weight: 500; /* Make the text a bit bolder */
-    text-decoration: none; /* Remove the underline */
-    color: var(--color-light-mode); /* Use the same color as the light mode text */
-    margin-right: 10px; /* Add some space between the links */
+    font-size: 1rem;
+    /* Adjust the font size */
+    font-weight: 500;
+    /* Make the text a bit bolder */
+    text-decoration: none;
+    /* Remove the underline */
+    color: var(--color-light-mode);
+    /* Use the same color as the light mode text */
+    margin-right: 10px;
+    /* Add some space between the links */
 }
 
 .nav-link:hover {
-    color:rgb(255, 255, 255); /* Change color on hover */
+    color: rgb(255, 255, 255);
+    /* Change color on hover */
 }
 
 .navbar_st .row {
-    margin-right: 10px; /* Add some space between the row and the right edge */
+    margin-right: 10px;
+    /* Add some space between the row and the right edge */
 }
 
 .d-flex .align-items-center {
-    padding-right: 20px; /* Add space to the right side of the links */
+    padding-right: 20px;
+    /* Add space to the right side of the links */
 }
 
 /* Mobile adjustments */
 @media (max-width: 576px) {
     .nav-link {
         font-size: 0.9rem;
-        padding-left: 15px; /* Adjust spacing for mobile */
-        padding-right: 15px; /* Adjust spacing for mobile */
+        padding-left: 15px;
+        /* Adjust spacing for mobile */
+        padding-right: 15px;
+        /* Adjust spacing for mobile */
     }
+}
+
+.formula-box {
+    border-left: 4px solid #007bff;
+    /* Bordo a sinistra per evidenziare */
+    padding: 15px;
+    margin-bottom: 15px;
+    border-radius: 4px;
+}
+
+.formula-box p {
+    margin: 0;
+    font-family: 'Courier New', Courier, monospace;
+    /* Font a larghezza fissa per codice */
+    font-size: 16px;
+}
+
+.tr_span {
+    background-color: rgba(138, 200, 255, 0.285);
+}
+
+.tr_span:hover {
+    background-color: #dedede;
 }

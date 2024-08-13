@@ -6,7 +6,7 @@
 {% include 'partials/navbar.html' %}
 {% block content %}
 <div class="container">
-    <div class="row">
+    <div class="row mb-5">
         <div class="col-12 col-lg-4">
             <h1 class="mt-5">{{ dieta }}</h1>
             <form method="post">
@@ -37,16 +37,16 @@
                     </thead>
                     <tbody>
                         <tr>
-                            <td>S_crop</td>
-                            <td>Superficie coltivata a coltura energetica</td>
-                            <td>{{ S_IT }}</td>
-                            <td>ha</td>
+                            <td><span class="tr_span rounde-4"><strong>S_crop</strong></span></td>
+                            <td><span class="tr_span rounde-4"><strong>Superficie coltivata a coltura energetica</strong></span></td>
+                            <td><span class="tr_span rounde-4"><strong>{{ S_IT }}</strong></span></td>
+                            <td><span class="tr_span rounde-4"><strong>ha</strong></span></td>
                         </tr>
                         <tr class="highlight-row">
-                            <td>A_capi</td>
-                            <td>Numero di Capi di Bestiame</td>
-                            <td>{{ A_capi }}</td>
-                            <td>capi</td>
+                            <td><span class="tr_span rounde-4"><strong>A_capi</strong></span></td>
+                            <td><span class="tr_span rounde-4"><strong>Numero di Capi di Bestiame</strong></span></td>
+                            <td><span class="tr_span rounde-4"><strong>{{ A_capi }}</strong></span></td>
+                            <td><span class="tr_span rounde-4"><strong>capi</strong></span></td>
                         </tr>
                         <tr>
                             <td>E_el</td>
@@ -86,66 +86,58 @@
     </div>
 
     {% if percentuali %}
-    <div class="row">
-        <h1>Dimensionamento aziendale per un impianto a Biogas</h1>
-        <h3>Processo di calcolo:</h3>
+    <div class="row mt-5">
         <div class="col-12 col-lg-8">
+            <h1>Dimensionamento aziendale</h1>
+            <h3>Processo di calcolo:</h3>
             <p>
-                Si consideri che l'algoritmo è calibrato con l'obbiettivo finale di produrre un megawatt ora al giorno
-                (commissione progettuale). Dalle <a href="/specifiche">specifiche di
-                    progetto</a> (commissione progettuale) e dai <a href="/specifiche">tabulati dei parametri</a> si
-                stima il dimensionamento aziendale
-                attraverso il
-                numero di capi di bestiame e la superficie a coltura energetica dedicata a Biogas.
-            <p>
-                L'equazione descrive
-                l'energia elettrica giornaliera [E_el] necessaria per ottenere 1 MW ora al giorno (commissione
-                progettuale).
+                L'algoritmo è calibrato su <a href="/specifiche">specifiche di progetto</a>, con obbiettivo finale di
+                produrre un megawatt ora al giorno
+                (commissione progettuale). Saranno quindi utilizzati i parametri riportati nei <a
+                    href="/specifiche">tabulati</a> per la stima del
+                dimensionamento aziendale.
+                La stima del dimensionamento aziendale è espressa attraverso <strong>il numero di capi di bestiame</strong> e <strong>la superficie a
+                    coltura energetica</strong> dedicata a Biogas.
             </p>
-            <p>
-                <a>P</a> = E_el/24 <br>
-                E_el = P x 24 [kW x (ore/giorno)]<br><br>
-                E_el = 1000 x 24 = <span>{{ E_el }}</span> kW/giorno<br>
-                <span class="small">in cui P = potenza richiesta (commissione progettuale)</span>
+
+            <div class="formula-box">
+                <p>
+                    <strong>E_el = P x 24 [kW x (ore/giorno)]</strong><br><br>
+                    E_el = 1000 x 24 = <span>{{ E_el }}</span> [kW/giorno]<br><br>
+                    <span class="small">in cui P = potenza richiesta (commissione progettuale)</span>
+                </p>
+            </div>
+
+            <p>Si passare al calcolo del metano totale [M_ch4_tot] necessario per arrivare a produrre tale energia:</p>
+
+            <div class="formula-box">
+                <p>
+                    <!-- <strong>E_el = M_ch4_tot x H1 x n</strong><br> -->
+                    <strong>M_ch4_tot = E_el / (H1 x n) [(kWh/giorno) / (kWh/Nm³)]</strong><br><br>
+                    M_ch4_tot = 2400 / (10 x 0.45) = <span>{{ M_ch4_tot }}</span> [Nm³/giorno]<br><br>
+                    <span class="small">in cui H1 = potere calorifero inferiore CH4 [kWh/Nm³], n = rendimento elettrico
+                        [%]</span>
+                </p>
+            </div>
+
+            <p>Ora è possibile stimare il Biogas totale [M_B_tot] considerando la <span>{{ dieta }}</span> selezionata:
             </p>
-            <p>
-                Si passare al calcolo del metano totale [M_ch4_tot] necessario per arrivare a produrre tale
-                energia, attraverso i seguenti calcoli.
-            </p>
-            <p>
-                E_el = M_ch4_tot x <a>H1</a> x <a>n</a> <br>
-                M_ch4_tot = E_el/(H1 x n) [(kWh/giorno)/(kWh/Nm³)]<br><br>
-                M_ch4_tot = 2400/(10 x 0.45) = <span>{{ M_ch4_tot }}</span> [Nm³/giorno]
-            <p>
-                <span class="small">in cui H1 = potere calorifero inferiore CH4 [kWh/Nm³], n = rendimento elettrico
-                    [%]</span>
-            </p>
-            <p>
-                Ora è possibile stimare il Biogas totale [M_B_tot].
-                Considerando la <span>{{ dieta }}</span> selezionata e il
-                relativo <a>Potenziale metanigeno</a> delle biomasse, si procede con il seguente rapporto:
-            </p>
-            <p>
-                M_ch4_tot =
-                M_B_tot*(phi_animal*Pg_animal*C_CH4_animal)+(phi_crop*Pg_crop*C_CH4_crop)+(phi_waste*Pg_waste*C_CH4_waste)
-                [(Nm³/giorno)/(Nm³/tonn)] <br>
-                M_B_tot =
-                M_ch4_tot/(phi_animal*Pg_animal*C_CH4_animal)+(phi_crop*Pg_crop*C_CH4_crop)+(phi_waste*Pg_waste*C_CH4_waste)
-                [(Nm³/giorno)/(Nm³/tonn)]
-                <br>
-                <br>
-                M_B_tot = <span>{{ M_ch4_tot }}</span>/(<span>{{debug_info.phi_LS}}</span>*<span>{{ debug_info.Pg_LS
-                    }}</span>*<span>{{
-                    debug_info.C_CH4_LS }}</span>)+(<span>{{debug_info.phi_IT}}</span>*<span>{{ debug_info.Pg_IT
-                    }}</span>*<span>{{ debug_info.C_CH4_IT }}</span>)+(<span>{{debug_info.phi_SF}}</span>*<span>{{
-                    debug_info.Pg_SF
-                    }}</span>*<span>{{ debug_info.C_CH4_SF }}</span>) = <span>{{ M_B_tot }}</span>[tonn/giorno] <br>
-            </p>
-            <p>
-                Di seguito in tabella, parametri e valori relativi alla <span>{{dieta}}</span> scelta:
-            </p>
+
+            <div class="formula-box">
+                <p>
+                    <strong>M_B_tot = M_ch4_tot / [(phi_animal x Pg_animal x C_CH4_animal) + (phi_crop x Pg_crop x
+                        C_CH4_crop) + (phi_waste x Pg_waste x C_CH4_waste)]</strong><br><br>
+                    M_B_tot = <span>{{ M_ch4_tot }}</span> / [ (<span>{{ debug_info.phi_LS }}</span> x <span>{{
+                        debug_info.Pg_LS }}</span> x <span>{{ debug_info.C_CH4_LS }}</span>) + (<span>{{
+                        debug_info.phi_IT }}</span> x <span>{{ debug_info.Pg_IT }}</span> x <span>{{ debug_info.C_CH4_IT
+                        }}</span>) + (<span>{{ debug_info.phi_SF }}</span> x <span>{{ debug_info.Pg_SF }}</span> x
+                    <span>{{ debug_info.C_CH4_SF }}</span>) ]<br>
+                    = <span>{{ M_B_tot }}</span> [ton/giorno]
+                </p>
+            </div>
         </div>
     </div>
+
     {% endif %}
 
     <!-- tabelle parametri -->
@@ -161,7 +153,7 @@
                             <th>Descrizione</th>
                             <th>Ingrediente</th>
                             <th>Valore</th>
-                            <th>um</th>
+                            <th>UdM</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -236,31 +228,36 @@
 
     <div class="row">
         <div class="col-12">
-            <h3 class="mt-5">Denominatore Calcolo Dettagliato:</h3>
+            <h3 class="mt-5">Risultati al Denominatore:</h3>
             <div class="table-responsive">
                 <table class="table table-striped">
                     <thead>
                         <tr>
                             <th>Parametro</th>
                             <th>Valore</th>
+                            <th>Risultato</th>
                         </tr>
                     </thead>
                     <tbody>
                         <tr>
-                            <td>M_B_tot_denominatore</td>
-                            <td>{{ debug_info.M_B_tot_denominator }}</td>
-                        </tr>
-                        <tr>
-                            <td>phi_animal * Pg_animal * C_CH4_animal</td>
+                            <td>phi_animal x Pg_animal x C_CH4_animal</td>
+                            <td>{{ debug_info.phi_LS }} x {{ debug_info.Pg_LS }} x {{ debug_info.C_CH4_LS }}</td>
                             <td>{{ debug_info.M_B_tot_denominator_calculation['phi_LS * Pg_LS * C_CH4_LS'] }}</td>
                         </tr>
                         <tr>
-                            <td>phi_crop * Pg_crop * C_CH4_crop</td>
+                            <td>phi_crop x Pg_crop x C_CH4_crop</td>
+                            <td>{{ debug_info.phi_IT }} x {{ debug_info.Pg_IT }} x {{ debug_info.C_CH4_IT }}</td>
                             <td>{{ debug_info.M_B_tot_denominator_calculation['phi_IT * Pg_IT * C_CH4_IT'] }}</td>
                         </tr>
                         <tr>
-                            <td>phi_waste * Pg_waste * C_CH4_waste</td>
+                            <td>phi_waste x Pg_waste x C_CH4_waste</td>
+                            <td>{{ debug_info.phi_SF }} x {{ debug_info.Pg_SF }} x {{ debug_info.C_CH4_SF }}</td>
                             <td>{{ debug_info.M_B_tot_denominator_calculation['phi_SF * Pg_SF * C_CH4_SF'] }}</td>
+                        </tr>
+                        <tr>
+                            <td>M_B_tot_denominatore</td>
+                            <td></td>
+                            <td>{{ debug_info.M_B_tot_denominator }}</td>
                         </tr>
                     </tbody>
                 </table>
@@ -268,102 +265,101 @@
         </div>
     </div>
 
-    <div class="row">
-        <div class="col-12">
+    <div class="row mt-5">
+        <div class="col-12 col-lg-8">
             <p>
                 La biomassa totale è di <span>{{ M_B_tot }}</span> tonnellate al giorno, rientra nel vincolo di progetto
-                (
-                40 e le 70 tonnellate al giorno). Si procede con il calcolo della superficie coperta dalla coltura
-                dedicata (
-                relativa alla <span>{{dieta}}</span> scelta) e il calcolo dei capi da allevare per ottenere le quantità
-                necessrie alla <span>{{dieta}}</span>.
+                (40 e le 70 tonnellate al giorno). Si procede con il calcolo della superficie coperta dalla coltura
+                dedicata (relativa alla <span>{{dieta}}</span> scelta) e il calcolo dei capi da allevare per ottenere le
+                quantità
+                necessarie alla <span>{{dieta}}</span>.
             </p>
-            <p>
-                M_B_crop = phi_crop x M_B_tot <br> [tonn/giorno]
-                M_B_animal = phi_crop x M_B_tot<br> [tonn/giorno]
-                <br>
-                M_B_crop = <span>{{debug_info.phi_crop}}</span> x <span>{{ M_B_tot }}</span><br> [tonn/giorno]
-                M_B_animal = <span>{{debug_info.phi_animal}}</span> x <span>{{ M_B_tot }}</span> [tonn/giorno]
-            </p>
-            <p>
-                Calcolo dei giorni di funzionamento dell'impanto a Biogas:
-                N = T/24 [(h/anno)/(h/anno)] <br>
-                <br>
-                N = 8040/24 = 335 [giorni/anno]
-                <br>
-                <br>
-                <span class="small">Il resto dei giorni dell'anno serviranno per la manutenzione dell'impianto e
-                    bruciare i gas in eccesso </span>
-            </p>
-            <p>
-                Ora si passa alla stima della superficie da destinare alla coltura energetica: <br>
-            </p>
-            <p>
-                S_crop = (M_B_crop x N)/r [((tonn/giorno)x(giorni/anno))/(tonn/(ha x anno))]
-                <br><br>
-                S_crop = (<span>{{ M_B_IT }} </span>x 335)/<span>{{ debug_info.resa_IT }}</span>
-            <div>
-                <br>
-                <span class="small">in cui r = resa [tonn/(ha x annue)]</span>
-                </br>
+
+            <div class="formula-box">
                 <p>
-                    Infine, si stima il numero di capi necessari per ottenere la produzione di letame suino:
+                    <strong>M_B_crop = phi_crop x M_B_tot</strong> [tonn/giorno]<br>
+                    <strong>M_B_animal = phi_animal x M_B_tot</strong> [tonn/giorno]<br><br>
+                    M_B_crop = <span>{{ debug_info.phi_crop }}</span> x <span>{{ M_B_tot }}</span> [tonn/giorno]<br>
+                    M_B_animal = <span>{{ debug_info.phi_animal }}</span> x <span>{{ M_B_tot }}</span> [tonn/giorno]
                 </p>
-                <p>
-                    A_capi = (M_B_animal x N)/(p_m x rho x m_c) [(tonn/anno)/((m³/(tonn_pesovivo x anno)) x (tonn/m³) x
-                    (tonn_pesovivo/capo))]
-                    <br>
-                <p>
-                    A_capi = (<span>{{M_B_animal}}</span> x 335)/(<span>{{ debug_info.p_m }}</span> x <span>{{
-                        debug_info.rho }}</span> x <span>{{ debug_info.m_c }}</span>) = <span>{{A_capi}}</span>
-                    </br>
             </div>
-            </p>
-
-
-            <div class="row">
-                <div class="col-12">
-                    <h3 class="mt-5">Parametri della Dieta:</h3>
-                    <div class="table-responsive">
-                        <table class="table table-striped">
-                            <thead>
-                                <tr>
-                                    <th>Parametro</th>
-                                    <th>Descrizione</th>
-                                    <th>Valore</th>
-                                    <th>um</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr>
-                                    <td>r</td>
-                                    <td>Resa Colturale</td>
-                                    <td>{{ debug_info.resa_IT }}</td>
-                                    <td>ha</td>
-                                </tr>
-                                <tr>
-                                    <td>p_m</td>
-                                    <td>Produzione di reflui</td>
-                                    <td>{{ debug_info.p_m }}</td>
-                                    <td>ton</td>
-                                </tr>
-                                <tr>
-                                    <td>rho</td>
-                                    <td>Densità media refluo</td>
-                                    <td>{{ debug_info.rho }}</td>
-                                    <td>ton/m³</td>
-                                </tr>
-                                <tr>
-                                    <td>m_c</td>
-                                    <td>Quantità di refluo per capo</td>
-                                    <td>{{ debug_info.m_c }}</td>
-                                    <td>ton/capo</td>
-                                </tr>
-                            </tbody>
-                        </table>
-                    </div>
-                </div>
+            <p>Calcolo dei giorni di funzionamento dell'impianto a Biogas:</p>
+            <div class="formula-box">
+                <p>
+                    <strong>N = T/24</strong> [(h/anno) / (h/giorno)] <br><br>
+                    N = 8040 / 24 = 335 [giorni/anno]<br><br>
+                    <span class="small">NOTE! Il resto dei giorni dell'anno serviranno per la manutenzione dell'impianto
+                        e
+                        bruciare i gas in eccesso.</span>
+                </p>
             </div>
-            {% endif %}
+
+            <p>Ora si passa alla stima della superficie da destinare alla coltura energetica:</p>
+
+            <div class="formula-box">
+                <p>
+                    <strong>S_crop = (M_B_crop x N) / r</strong> [((tonn/giorno) x (giorni/anno)) / (tonn/(ha x
+                    anno))]<br><br>
+                    S_crop = (<span>{{ M_B_IT }}</span> x 335) / <span>{{ debug_info.resa_IT }}</span> [ha]<br><br>
+                    <span class="small">in cui r = resa [tonn/(ha x anno)]</span>
+                </p>
+            </div>
+
+            <p>Infine, si stima il numero di capi necessari per ottenere la produzione di refluo zootecnico:</p>
+
+            <div class="formula-box">
+                <p>
+                    <strong>A_capi = (M_B_animal x N) / (p_m x ρ x m_c)</strong> <br>
+                    {(tonn/anno) / [(m³/(tonn_pesovivo x anno)) x (tonn/m³) x (tonn_pesovivo/capo)]}<br><br>
+                    A_capi = (<span>{{ M_B_animal }}</span> x 335) / (<span>{{ debug_info.p_m }}</span> x <span>{{
+                        debug_info.rho }}</span> x <span>{{ debug_info.m_c }}</span>) = <span>{{ A_capi }}</span>
+                </p>
+            </div>
         </div>
-        {% endblock %}
+    </div>
+
+    <div class="row">
+        <div class="col-12">
+            <h3 class="mt-5">Parametri della Dieta:</h3>
+            <div class="table-responsive">
+                <table class="table table-striped">
+                    <thead>
+                        <tr>
+                            <th>Parametro</th>
+                            <th>Descrizione</th>
+                            <th>Valore</th>
+                            <th>UdM</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>r</td>
+                            <td>Resa Colturale</td>
+                            <td>{{ debug_info.resa_IT }}</td>
+                            <td>ha</td>
+                        </tr>
+                        <tr>
+                            <td>p_m</td>
+                            <td>Produzione di reflui</td>
+                            <td>{{ debug_info.p_m }}</td>
+                            <td>ton</td>
+                        </tr>
+                        <tr>
+                            <td>rho</td>
+                            <td>Densità media refluo</td>
+                            <td>{{ debug_info.rho }}</td>
+                            <td>ton/m³</td>
+                        </tr>
+                        <tr>
+                            <td>m_c</td>
+                            <td>Quantità di refluo per capo</td>
+                            <td>{{ debug_info.m_c }}</td>
+                            <td>ton/capo</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+    {% endif %}
+    {% endblock %}
