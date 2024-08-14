@@ -25,6 +25,12 @@
         {% if percentuali %}
         <div class="col-12 col-lg-8">
             <h2 class="mt-5">Risultati:</h2>
+            {% if warning_message %}
+            <div class="alert alert-warning mt-3">
+                {{ warning_message }}
+                <a href="/tabulati">vedi specifiche</a>
+            </div>
+            {% endif %}
             <div class="table-responsive">
                 <table class="table table-striped">
                     <thead>
@@ -37,17 +43,30 @@
                     </thead>
                     <tbody>
                         <tr>
-                            <td><span class="tr_span rounde-4"><strong>S_crop</strong></span></td>
-                            <td><span class="tr_span rounde-4"><strong>Superficie coltivata a coltura
+                            <td><span class="tr_span"><strong>S_crop</strong></span></td>
+                            <td><span class="tr_span"><strong>Superficie coltivata a coltura
                                         energetica</strong></span></td>
-                            <td><span class="tr_span rounde-4"><strong>{{ S_IT }}</strong></span></td>
-                            <td><span class="tr_span rounde-4"><strong>ha</strong></span></td>
+                            <td><span class="tr_span"><strong>{{ S_IT }}</strong></span></td>
+                            <td><span class="tr_span"><strong>ha</strong></span></td>
                         </tr>
                         <tr class="highlight-row">
-                            <td><span class="tr_span rounde-4"><strong>A_capi</strong></span></td>
-                            <td><span class="tr_span rounde-4"><strong>Numero di Capi di Bestiame</strong></span></td>
-                            <td><span class="tr_span rounde-4"><strong>{{ A_capi }}</strong></span></td>
-                            <td><span class="tr_span rounde-4"><strong>capi</strong></span></td>
+                            <td><span class="tr_span"><strong>A_capi</strong></span></td>
+                            <td><span class="tr_span"><strong>Numero di Capi di Bestiame</strong></span></td>
+                            <td><span class="tr_span"><strong>{{ A_capi }}</strong></span></td>
+                            <td><span class="tr_span"><strong>capi</strong></span></td>
+                        </tr>
+                        <tr>
+                            {% if warning_message %}
+                            <td><span class="tr_warning"><strong>M_B_tot</strong></span></td>
+                            <td><span class="tr_warning"><strong>Massa di Biogas Totale</strong></span></td>
+                            <td><span class="tr_warning"><strong>{{ M_B_tot }}❌</strong></span></td>
+                            <td><span class="tr_warning"><strong>ton</strong></span></td>
+                            {% else %}
+                            <td><span class="tr_span"><strong>M_B_tot</strong></span></td>
+                            <td><span class="tr_span"><strong>Massa di Biogas Totale</strong></span></td>
+                            <td><span class="tr_span"><strong>{{ M_B_tot }}</strong></span></td>
+                            <td><span class="tr_span"><strong>ton</strong></span></td>
+                            {% endif %}
                         </tr>
                         <tr>
                             <td>E_el</td>
@@ -60,12 +79,6 @@
                             <td>Metano Totale Necessario</td>
                             <td>{{ M_ch4_tot }}</td>
                             <td>Nm³</td>
-                        </tr>
-                        <tr>
-                            <td>M_B_tot</td>
-                            <td>Massa di Biogas Totale</td>
-                            <td>{{ M_B_tot }}</td>
-                            <td>ton</td>
                         </tr>
                         <tr>
                             <td>M_B_crop</td>
@@ -83,6 +96,9 @@
                 </table>
             </div>
         </div>
+        {% else %}
+        <p>Le <a class="a_dark" href="/tabulati">specifiche di progetto</a> impongono un limite di Carico Medio Giornaliero di Biogas compreso tra 40 e 70
+            tonnellate/giorno </p>
         {% endif %}
     </div>
 
@@ -294,7 +310,7 @@
                 <p>
                 </p>
                 <p>
-                    <strong>NOTE! Il resto dei giorni dell'anno serviranno per la manutenzione dell'impianto
+                    <strong>NOTA! Il resto dei giorni dell'anno serviranno per la manutenzione dell'impianto
                         e bruciare i gas in eccesso.
                     </strong>
                 </p>
@@ -305,7 +321,7 @@
                             class="img-fluid mb-3">
                     </div>
                     <div class="col-12 col-lg-6">
-                        <p>torce sono necessarie come misura di sicurezza e di tutela ambientale per bruciare
+                        <p>Le torce sono necessarie come misura di sicurezza e di tutela ambientale per bruciare
                             eccedenze
                             di biogas. <br> Obiettivo: massimizzare la combustione e ridurre il rilascio in atmosfera.
                             <br>
@@ -334,7 +350,7 @@
                     <strong>A_capi = (M_B_animal x N) / (p_m x ρ x m_c)</strong> <br>
                     {(tonn/anno) / [(m³/(tonn_pesovivo x anno)) x (tonn/m³) x (tonn_pesovivo/capo)]}
                 <div><br>
-                    A_capi = (<span>{{ M_B_animal }}</span> x 335) / (<span>{{ debug_info.p_m }}</span> x <span>{{
+                    A_capi = (<span>{{ M_B_LS }}</span> x 335) / (<span>{{ debug_info.p_m }}</span> x <span>{{
                         debug_info.rho }}</span> x <span>{{ debug_info.m_c }}</span>) = <span>{{ A_capi }}</span>
                     </p>
                 </div>
@@ -382,11 +398,6 @@
                             </tbody>
                         </table>
                     </div>
-                    {% if warning_message %}
-                    <div class="alert alert-warning mt-3">
-                        {{ warning_message }}
-                    </div>
-                    {% endif %}
                 </div>
             </div>
             {% endif %}

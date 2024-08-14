@@ -130,7 +130,7 @@ def dieta(dieta_name):
         # Controllo se M_B_tot è fuori dal range specificato
         warning_message = None
         if M_B_tot < 40 or M_B_tot > 70:
-            warning_message = "Attenzione: il valore di M_B_tot è fuori dal range di progetto (40-70 tonnellate). Le specifiche di progetto non sono rispettate."
+            warning_message = "⚠️Attenzione: il Carico Medio Giornaliero di Biogas (M_B_tot) è fuori dal range di progetto (40-70 tonnellate). Le specifiche di progetto non sono rispettate. Cambia i valori che hai inserito."
 
         # Massa di biogas prodotto
         M_B_IT = phi_IT * M_B_tot

@@ -192,6 +192,10 @@ body.dark-mode .slider:before {
     background-color: #dedede;
 }
 
+.tr_warning{
+    background-color: rgba(255, 0, 0, 0.164);
+}
+
 footer {
     color: #ccc;
 }
