@@ -1,1 +1,1 @@
-web: gunicorn bionrg:app
+web:gunicorn bionrg:app
